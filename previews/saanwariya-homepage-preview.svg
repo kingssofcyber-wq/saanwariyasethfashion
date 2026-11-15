@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="2380" viewBox="0 0 1440 2380">
+<defs>
+ <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ddc8bd"/><stop offset=".48" stop-color="#b69191"/><stop offset="1" stop-color="#58404b"/></linearGradient>
+ <linearGradient id="saree" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#874d62"/><stop offset=".55" stop-color="#d9a77d"/><stop offset="1" stop-color="#f0d9bd"/></linearGradient>
+ <linearGradient id="suit" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9a6b4"/><stop offset="1" stop-color="#6d5368"/></linearGradient>
+ <linearGradient id="jewel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8e9bf"/><stop offset=".55" stop-color="#ba8d45"/><stop offset="1" stop-color="#79552d"/></linearGradient>
+ <linearGradient id="watch" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7d0c6"/><stop offset="1" stop-color="#605862"/></linearGradient>
+ <linearGradient id="editorial" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b99a8e"/><stop offset=".5" stop-color="#56434f"/><stop offset="1" stop-color="#d7b9a5"/></linearGradient>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="9" stdDeviation="15" flood-color="#352231" flood-opacity=".13"/></filter>
+ <style>
+ .serif{font-family:Georgia,'Times New Roman',serif}.sans{font-family:Arial,sans-serif}.eyebrow{font:700 10px Arial;letter-spacing:2.5px;fill:#987850}.muted{fill:#817780}.ink{fill:#29232b}.plum{fill:#5c354d}.fine{stroke:#eae2dd;stroke-width:1}.white{fill:#fff}
+ </style>
+</defs>
+<rect width="1440" height="2380" fill="#fff"/>
+<!-- top strip -->
+<rect width="1440" height="33" fill="#3b2837"/><text x="720" y="21" text-anchor="middle" class="sans" font-size="10" letter-spacing="2" fill="#f8eeea">COMPLIMENTARY SHIPPING ON ORDERS ABOVE ₹999　 ✦　 THOUGHTFUL FINDS. EVERYDAY DELIGHT.</text>
+<!-- header -->
+<g transform="translate(92 55)"><circle cx="22" cy="22" r="21" fill="none" stroke="#bd9861"/><text x="22" y="31" text-anchor="middle" class="serif" font-size="29" font-style="italic" fill="#5c354d">S</text><text x="56" y="22" class="serif ink" font-size="25">Saanwariya<tspan fill="#bd9861">.</tspan></text><text x="57" y="39" class="sans muted" font-size="8" letter-spacing="3">SETH FASHION</text></g>
+<rect x="430" y="63" width="490" height="42" rx="2" fill="#fbf9f7" stroke="#eae2dd"/><text x="451" y="89" class="sans" font-size="12" fill="#93878d">⌕　 Search sarees, watches, jewellery &amp; more</text>
+<g class="sans" font-size="11" fill="#635861"><text x="1060" y="88">♙　Account</text><text x="1170" y="88">♡　Saved</text><text x="1275" y="88">▢　Bag</text></g>
+<line x1="0" y1="128" x2="1440" y2="128" class="fine"/>
+<g class="sans" font-size="11" fill="#5f555e" text-anchor="middle"><text x="215" y="155">Sarees</text><text x="360" y="155">Suits &amp; Sets</text><text x="510" y="155">Jewellery</text><text x="650" y="155">Watches</text><text x="770" y="155">Bags</text><text x="885" y="155">Footwear</text><text x="1035" y="155" fill="#987850">Marketplace ↗</text><text x="1170" y="155">More⌄</text></g>
+<line x1="0" y1="172" x2="1440" y2="172" class="fine"/>
+<!-- hero left -->
+<text x="115" y="267" class="eyebrow">✦　 THE EVERYDAY STYLE EDIT</text>
+<text x="110" y="367" class="serif ink" font-size="81" letter-spacing="-3">Find your kind</text><text x="110" y="454" class="serif ink" font-size="81" letter-spacing="-3">of <tspan font-style="italic" fill="#5c354d">beautiful.</tspan></text>
+<text x="114" y="507" class="sans muted" font-size="16">From timeless ethnic wear to everyday favourites,</text><text x="114" y="533" class="sans muted" font-size="16">discover pieces that feel like you.</text>
+<rect x="112" y="574" width="228" height="52" rx="2" fill="#3b2837"/><text x="136" y="606" class="sans white" font-size="12" font-weight="bold">Explore the collection　 →</text><text x="366" y="606" class="sans plum" font-size="12" font-weight="bold">Shop ethnic wear　↗</text>
+<line x1="112" y1="700" x2="515" y2="700" class="fine"/><text x="112" y="730" class="serif ink" font-size="15">Curated with care</text><text x="112" y="752" class="sans muted" font-size="10">Thoughtful picks, fresh finds</text><text x="315" y="730" class="serif ink" font-size="15">Style for every day</text><text x="315" y="752" class="sans muted" font-size="10">Little details, lasting charm</text>
+<!-- hero image stylized fashion photo -->
+<rect x="660" y="215" width="675" height="565" fill="url(#hero)"/>
+<ellipse cx="1035" cy="740" rx="295" ry="70" fill="#342331" opacity=".14"/>
+<path d="M880 780 Q930 660 937 520 Q945 365 1005 317 Q1059 276 1114 322 Q1171 375 1178 525 Q1185 675 1270 780Z" fill="#5a3c4e" opacity=".95"/>
+<path d="M979 345 Q1001 295 1050 292 Q1102 296 1126 350 Q1110 402 1052 418 Q995 402 979 345Z" fill="#b78569"/>
+<path d="M982 367 Q1003 326 1051 325 Q1099 326 1124 370 Q1104 415 1051 432 Q1001 414 982 367Z" fill="#d6ad91"/>
+<path d="M956 440 Q1057 470 1152 435 L1256 779 L882 779Z" fill="url(#saree)"/>
+<path d="M956 449 Q1017 493 1085 492 Q1146 491 1184 454 L1256 779 L1140 779 Q1090 640 1037 555 Q1013 630 982 779 L882 779Z" fill="#854c62"/>
+<path d="M949 478 Q1020 537 1100 529 Q1160 520 1191 476" fill="none" stroke="#e7c891" stroke-width="8"/>
+<path d="M904 548 Q1000 598 1124 566 Q1175 552 1211 522" fill="none" stroke="#e4c28a" stroke-width="5" opacity=".85"/>
+<path d="M1018 417 Q1035 442 1053 438 Q1073 438 1090 415" fill="none" stroke="#e7c891" stroke-width="5"/>
+<circle cx="1053" cy="443" r="9" fill="url(#jewel)"/><path d="M1045 451 Q1053 480 1062 451" fill="none" stroke="#d1aa6d" stroke-width="3"/>
+<rect x="660" y="560" width="675" height="220" fill="url(#hero)" opacity=".19"/>
+<rect x="687" y="679" width="240" height="90" rx="2" fill="#fff" filter="url(#shadow)"/><text x="710" y="716" class="serif ink" font-size="17">✳　Made to be loved</text><text x="734" y="739" class="sans muted" font-size="10">Find your next favourite</text>
+<text x="1294" y="253" class="serif" font-size="45" fill="#f5dfbd">✦</text>
+<text x="711" y="695" class="eyebrow" fill="#fff" opacity="0">THE NEW EDIT</text>
+<!-- divider -->
+<text x="720" y="865" text-anchor="middle" class="sans" font-size="9" fill="#a09398" letter-spacing="4">────────　 THE SAANWARIYA EDIT　 ────────</text>
+<!-- categories -->
+<text x="105" y="935" class="eyebrow">SHOP BY MOOD</text><text x="105" y="989" class="serif ink" font-size="47">Explore our <tspan font-style="italic" fill="#5c354d">world</tspan></text><text x="1298" y="980" text-anchor="end" class="sans plum" font-size="12">View all categories　→</text>
+<!-- tile 1 saree -->
+<g><rect x="105" y="1025" width="292" height="260" fill="url(#saree)"/><path d="M160 1285 Q190 1175 205 1088 Q247 1040 276 1090 Q298 1172 343 1285Z" fill="#73394f"/><path d="M160 1133 Q242 1180 335 1127" fill="none" stroke="#e4c08e" stroke-width="7"/><path d="M189 1180 Q249 1230 323 1180" fill="none" stroke="#e4c08e" stroke-width="4"/><rect x="105" y="1170" width="292" height="115" fill="#241c23" opacity=".3"/><text x="125" y="1220" class="sans white" font-size="10">Drape your story</text><text x="125" y="1254" class="serif white" font-size="28">Sarees</text></g>
+<!-- tile 2 suits -->
+<g><rect x="412" y="1025" width="292" height="260" fill="url(#suit)"/><path d="M485 1285 Q482 1175 505 1080 L565 1052 L617 1080 Q645 1190 635 1285Z" fill="#d8c0c2"/><path d="M505 1080 L565 1155 L617 1080" fill="none" stroke="#98788e" stroke-width="6"/><path d="M521 1153 L608 1153 M519 1172 L610 1172 M516 1191 L611 1191" stroke="#b99471" stroke-width="3"/><rect x="412" y="1170" width="292" height="115" fill="#241c23" opacity=".28"/><text x="432" y="1220" class="sans white" font-size="10">Everyday to occasion</text><text x="432" y="1254" class="serif white" font-size="26">Suits &amp; Sets</text></g>
+<!-- tile 3 jewellery -->
+<g><rect x="719" y="1025" width="292" height="260" fill="#c8b79d"/><circle cx="865" cy="1140" r="73" fill="none" stroke="url(#jewel)" stroke-width="9"/><path d="M815 1167 Q865 1265 916 1167" fill="none" stroke="#a97b39" stroke-width="10"/><circle cx="865" cy="1245" r="12" fill="#d7b36f"/><circle cx="829" cy="1129" r="10" fill="#f4dfa8"/><circle cx="902" cy="1129" r="10" fill="#f4dfa8"/><rect x="719" y="1170" width="292" height="115" fill="#241c23" opacity=".3"/><text x="739" y="1220" class="sans white" font-size="10">Little details, big charm</text><text x="739" y="1254" class="serif white" font-size="28">Jewellery</text></g>
+<!-- tile 4 watches -->
+<g><rect x="1026" y="1025" width="309" height="260" fill="url(#watch)"/><rect x="1164" y="1048" width="34" height="195" rx="15" fill="#574b53"/><circle cx="1181" cy="1146" r="61" fill="#c49b60"/><circle cx="1181" cy="1146" r="50" fill="#eee4d4"/><circle cx="1181" cy="1146" r="40" fill="#34313a"/><path d="M1181 1112 L1181 1146 L1207 1161" stroke="#d6b77b" stroke-width="3" fill="none"/><circle cx="1181" cy="1146" r="4" fill="#d6b77b"/><rect x="1026" y="1170" width="309" height="115" fill="#241c23" opacity=".3"/><text x="1046" y="1220" class="sans white" font-size="10">Time well styled</text><text x="1046" y="1254" class="serif white" font-size="28">Watches</text></g>
+<!-- featured -->
+<text x="105" y="1395" class="eyebrow">A FEW GOOD FINDS</text><text x="105" y="1450" class="serif ink" font-size="47">Picked for <tspan font-style="italic" fill="#5c354d">you</tspan></text><text x="1295" y="1445" text-anchor="end" class="sans plum" font-size="12">Shop all　→</text>
+<!-- product cards -->
+<g>
+ <rect x="105" y="1480" width="270" height="245" fill="url(#saree)"/><path d="M165 1725 Q180 1600 206 1545 Q236 1520 265 1550 Q292 1630 315 1725Z" fill="#7c3c56"/><path d="M154 1615 Q237 1655 326 1608" stroke="#e5c891" stroke-width="7" fill="none"/><text x="105" y="1750" class="sans" font-size="9" letter-spacing="1.5" fill="#9a8d94">SAANWARIYA HERITAGE</text><text x="105" y="1778" class="serif ink" font-size="18">Royal Zari Silk Festive Saree</text><text x="105" y="1810" class="sans ink" font-size="14" font-weight="bold">₹1,899　<tspan font-size="11" fill="#a69ba1" text-decoration="line-through" font-weight="normal">₹3,299</tspan></text>
+ <rect x="405" y="1480" width="270" height="245" fill="url(#suit)"/><path d="M480 1725 Q478 1590 503 1535 L541 1514 L581 1535 Q608 1617 607 1725Z" fill="#b6a0af"/><path d="M504 1540 L542 1595 L580 1540" fill="none" stroke="#eee2ce" stroke-width="5"/><text x="405" y="1750" class="sans" font-size="9" letter-spacing="1.5" fill="#9a8d94">SAANWARIYA STUDIO</text><text x="405" y="1778" class="serif ink" font-size="18">Mauve Embroidered Suit Set</text><text x="405" y="1810" class="sans ink" font-size="14" font-weight="bold">₹1,499　<tspan font-size="11" fill="#a69ba1" text-decoration="line-through" font-weight="normal">₹2,499</tspan></text>
+ <rect x="705" y="1480" width="270" height="245" fill="#d6c9b6"/><circle cx="840" cy="1590" r="65" fill="none" stroke="url(#jewel)" stroke-width="10"/><path d="M787 1618 Q840 1710 894 1618" fill="none" stroke="#a97b39" stroke-width="9"/><circle cx="840" cy="1690" r="11" fill="#d9b66f"/><text x="705" y="1750" class="sans" font-size="9" letter-spacing="1.5" fill="#9a8d94">AURUM EDIT</text><text x="705" y="1778" class="serif ink" font-size="18">Gold-Tone Statement Earrings</text><text x="705" y="1810" class="sans ink" font-size="14" font-weight="bold">₹599　<tspan font-size="11" fill="#a69ba1" text-decoration="line-through" font-weight="normal">₹999</tspan></text>
+ <rect x="1005" y="1480" width="330" height="245" fill="#b6b0b2"/><rect x="1145" y="1498" width="45" height="209" rx="18" fill="#655c61"/><circle cx="1168" cy="1600" r="65" fill="#bd9861"/><circle cx="1168" cy="1600" r="54" fill="#e3dbcf"/><circle cx="1168" cy="1600" r="43" fill="#34313a"/><path d="M1168 1568 L1168 1600 L1193 1616" stroke="#d4b57a" stroke-width="3" fill="none"/><text x="1005" y="1750" class="sans" font-size="9" letter-spacing="1.5" fill="#9a8d94">MERIDIAN</text><text x="1005" y="1778" class="serif ink" font-size="18">Minimal Rose Dial Watch</text><text x="1005" y="1810" class="sans ink" font-size="14" font-weight="bold">₹1,299　<tspan font-size="11" fill="#a69ba1" text-decoration="line-through" font-weight="normal">₹2,199</tspan></text>
+</g>
+<!-- editorial -->
+<rect x="105" y="1880" width="1230" height="300" fill="#3b2837"/>
+<rect x="105" y="1880" width="615" height="300" fill="url(#editorial)"/>
+<path d="M282 2180 Q300 2030 330 1948 Q384 1904 446 1948 Q488 2040 505 2180Z" fill="#b98c83"/><circle cx="390" cy="1939" r="37" fill="#b78569"/><path d="M343 1942 Q385 1879 432 1941" stroke="#2d2431" stroke-width="30" fill="none"/><path d="M333 1990 Q398 2050 468 1985" stroke="#e5c69a" stroke-width="7" fill="none"/>
+<text x="770" y="1942" class="eyebrow" fill="#d7bc98">A FRESH PERSPECTIVE</text><text x="770" y="2007" class="serif white" font-size="42">Make room for</text><text x="770" y="2055" class="serif" font-size="42" fill="#e0c09a" font-style="italic">new favourites.</text><text x="770" y="2100" class="sans" font-size="12" fill="#e1d5db">Thoughtful wardrobe additions, charming accessories</text><text x="770" y="2121" class="sans" font-size="12" fill="#e1d5db">and little joys for every version of you.</text><rect x="770" y="2138" width="190" height="34" fill="#fff"/><text x="789" y="2160" class="sans plum" font-size="10" font-weight="bold">Discover the edit　→</text>
+<!-- Marketplace -->
+<rect x="105" y="2220" width="1230" height="95" fill="#f8f4f0" stroke="#eee6df"/><circle cx="155" cy="2268" r="23" fill="#e9ded8"/><text x="155" y="2277" class="serif plum" text-anchor="middle" font-size="27">↗</text><text x="200" y="2255" class="eyebrow">MORE CHOICE, ONE PLACE TO DISCOVER</text><text x="200" y="2284" class="serif ink" font-size="23">Explore the wider marketplace</text><text x="780" y="2266" class="sans muted" font-size="11">Selected Flipkart catalogue picks. Continue to Flipkart to complete your order.</text><rect x="1120" y="2245" width="185" height="44" fill="#3b2837"/><text x="1142" y="2272" class="sans white" font-size="10" font-weight="bold">Explore marketplace ↗</text>
+<!-- footer quick -->
+<rect x="0" y="2335" width="1440" height="45" fill="#f7f2ee"/><text x="105" y="2363" class="sans muted" font-size="10">© 2026 Saanwariya Seth Fashion. All rights reserved.</text><text x="730" y="2363" class="sans muted" text-anchor="middle" font-size="10">Privacy　 Terms　 Returns</text><text x="1335" y="2363" class="sans muted" text-anchor="end" font-size="10">Made for your everyday, beautifully.</text>
+</svg>

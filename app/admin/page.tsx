@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { getSession } from "@/lib/auth"; import { redirect } from "next/navigation"; import { AdminDashboard } from "@/components/admin-dashboard";
+import { ArrowUpRight, ShieldCheck, Store } from "lucide-react";
+export const dynamic="force-dynamic";
+export default async function Admin(){const session=await getSession();if(!session)redirect("/login?next=/admin");if(session.role!=="ADMIN")redirect("/account");return <div className="container page-wrap admin-page-wrap"><div className="admin-page-top"><div><span className="eyebrow">SAANWARIYA · STORE CONTROL ROOM</span><h1>Good to see you,<br/><i>{session.name.split(" ")[0]}.</i></h1><p className="section-sub">Your catalogue, orders and storefront — all in one place.</p></div><div className="admin-top-actions"><span><ShieldCheck size={15}/> Admin session active</span><Link href="/" className="btn btn-outline"><Store size={16}/> View storefront <ArrowUpRight size={15}/></Link></div></div><AdminDashboard/></div>}

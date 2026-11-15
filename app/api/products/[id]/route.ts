@@ -1,0 +1,2 @@
+import { NextResponse } from "next/server"; import { prisma } from "@/lib/prisma"; import { requireAdmin } from "@/lib/auth";
+export async function DELETE(_req:Request,{params}:{params:Promise<{id:string}>}){const admin=await requireAdmin();if(!admin)return NextResponse.json({error:"Admin access required"},{status:403});const {id}=await params;try{await prisma.product.update({where:{id},data:{active:false}});return NextResponse.json({ok:true});}catch{return NextResponse.json({error:"Product not found"},{status:404});}}

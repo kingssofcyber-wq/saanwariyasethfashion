@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-label="Saanwariya lotus logo mark">
+ <g transform="translate(20 12)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+  <g stroke="#bd654b">
+   <path d="M100 190 C49 169 24 132 25 88 C64 99 91 136 100 190Z"/>
+   <path d="M100 190 C57 142 55 89 80 42 C111 80 116 132 100 190Z"/>
+   <path d="M100 190 C84 127 104 67 141 24 C161 78 141 137 100 190Z"/>
+   <path d="M100 190 C121 125 164 83 214 72 C205 125 160 170 100 190Z"/>
+   <path d="M100 190 C148 152 199 141 225 158 C188 197 138 211 100 190Z"/>
+   <path d="M100 190 C48 195 17 214 7 229 C55 235 90 215 100 190Z"/>
+  </g>
+  <path d="M100 190 C86 145 88 108 104 75 C121 114 116 158 100 190Z" stroke="#8d102d"/>
+  <path d="M26 211 Q100 242 178 211" stroke="#c99a62" stroke-width="5"/>
+ </g>
+</svg>

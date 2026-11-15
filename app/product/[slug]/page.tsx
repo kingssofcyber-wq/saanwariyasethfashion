@@ -1,0 +1,3 @@
+import { notFound } from "next/navigation"; import Link from "next/link"; import { prisma } from "@/lib/prisma"; import { demoProducts, money, type Product } from "@/lib/catalog"; import { ProductDetail } from "@/components/product-detail";
+export const dynamic="force-dynamic";
+export default async function ProductPage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;let p:Product|undefined;try{p=await prisma.product.findUnique({where:{slug}}) as Product|undefined;}catch{}p=p||demoProducts.find(x=>x.slug===slug);if(!p)notFound();return <div className="container page-wrap"><div className="breadcrumbs"><Link href="/">Home</Link> / <Link href="/shop">Shop</Link> / <span>{p.name}</span></div><ProductDetail product={p}/></div>}

@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+enum ProductSource {
+  OWN
+  FLIPKART
+}
+enum OrderStatus {
+  PLACED
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         UserRole @default(USER)
+  orders       Order[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Product {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  name        String
+  brand       String        @default("Saanwariya Select")
+  description String        @db.Text
+  category    String
+  price       Float
+  mrp         Float
+  image       String        @db.VarChar(1000)
+  images      String?       @db.Text
+  source      ProductSource @default(OWN)
+  externalUrl String?       @db.VarChar(2000)
+  stock       Int           @default(10)
+  featured    Boolean       @default(false)
+  active      Boolean       @default(true)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  @@index([category])
+  @@index([featured, active])
+}
+
+model Order {
+  id           String      @id @default(cuid())
+  orderNumber  String      @unique
+  userId       String
+  user         User        @relation(fields: [userId], references: [id])
+  fullName     String
+  email        String
+  phone        String
+  address      String      @db.Text
+  city         String
+  state        String
+  postalCode   String
+  subtotal     Float
+  shipping     Float
+  total        Float
+  paymentMethod String     @default("COD")
+  status       OrderStatus @default(PLACED)
+  items        OrderItem[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@index([userId, createdAt])
+}
+
+model OrderItem {
+  id          String  @id @default(cuid())
+  orderId     String
+  order       Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String?
+  productName String
+  image       String  @db.VarChar(1000)
+  price       Float
+  quantity    Int
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  createdAt DateTime @default(now())
+}

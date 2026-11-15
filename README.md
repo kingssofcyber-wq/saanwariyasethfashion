@@ -58,4 +58,3 @@ See [`HANDOUT.md`](./HANDOUT.md) for the complete project handoff, routes, setup
 This is a functional starter, not yet a fully operated production store. COD is the included checkout mode; a payment gateway and courier integration still need to be configured. Demo product photos/prices/stock must be verified against real SKUs. The Flipkart adapter requires valid affiliate credentials and an API/feed format that is currently supported. Confirm all contact details and return/shipping policies before accepting orders.
 
 A production build was not run while creating this ZIP; run `npm run build` after installing dependencies in your local/Hostinger environment.
-"# saanwariyasethfashion" 
