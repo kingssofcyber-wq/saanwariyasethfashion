@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { demoProducts, type Product } from "@/lib/catalog";
 import { Hero, MarqueeStrip, CategorySection, PromoCollections, FeaturedSection, NewArrivalsSection, EditorialBanner, SaleFeature, MarketplaceBanner, TrustStrip, ClosingNote } from "@/components/home-sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { AdUnit } from "@/components/adsense";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,7 @@ export default async function Home() {
   const products = await getHomeProducts();
   return <>
     <Hero />
+    <AdUnit slotKey="homeTop" className="home-ad-slot" />
     <TrustStrip />
     <ScrollReveal><CategorySection /></ScrollReveal>
     <ScrollReveal delay={60}><PromoCollections /></ScrollReveal>
@@ -27,6 +29,7 @@ export default async function Home() {
     <ScrollReveal><FeaturedSection products={products.slice(0, 24)} /></ScrollReveal>
     <ScrollReveal><EditorialBanner /></ScrollReveal>
     <ScrollReveal><MarketplaceBanner /></ScrollReveal>
+    <AdUnit slotKey="homeMid" className="home-ad-slot" />
     <ClosingNote />
   </>;
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
-import { Search, ShoppingCart, UserRound, Truck, ShieldCheck, Headset, Menu, X, ChevronDown, Heart } from "lucide-react";
+import { Search, ShoppingCart, UserRound, Truck, ShieldCheck, Headset, Menu, X, ChevronDown, Heart, ArrowLeftRight } from "lucide-react";
 import { useStore } from "@/components/providers";
 
 const nav = [
@@ -12,11 +12,11 @@ const nav = [
   { label: "Style Edits", href: "/shop" },
   { label: "Sarees", href: "/shop?category=Sarees" },
   { label: "Suits", href: "/shop?category=Suits%20%26%20Sets" },
-  { label: "Kurtis", href: "/shop?category=Suits%20%26%20Sets" },
+  { label: "Style Journal", href: "/style-journal" },
 ];
 
 export function SiteHeader() {
-  const { items } = useStore();
+  const { items, compare } = useStore();
   const router = useRouter();
   const path = usePathname();
   const [q, setQ] = useState("");
@@ -72,6 +72,7 @@ export function SiteHeader() {
                 <Link href="/shop?category=Watches" onClick={() => { setMore(false); setMobile(false); }}>Watches</Link>
                 <Link href="/shop?category=Bags" onClick={() => { setMore(false); setMobile(false); }}>Bags &amp; Accessories</Link>
                 <Link href="/shop/marketplace" onClick={() => { setMore(false); setMobile(false); }}>Marketplace Picks</Link>
+                <Link href="/style-journal" onClick={() => { setMore(false); setMobile(false); }}>Style Journal</Link>
                 <Link href="/admin" onClick={() => { setMore(false); setMobile(false); }}>Admin Portal ↗</Link>
               </div>}
             </div>
@@ -84,6 +85,7 @@ export function SiteHeader() {
 
           <div className="ss-header-actions">
             <Link href="/wishlist" aria-label="Wishlist" className="ss-wish-link"><Heart size={22} /></Link>
+            <Link href="/compare" aria-label={`Compare products, ${compare.length} selected`} className="ss-compare-link"><ArrowLeftRight size={21}/>{compare.length > 0 && <i>{compare.length}</i>}</Link>
             <Link href="/cart" aria-label={`Shopping cart, ${count} items`} className="ss-cart-link">
               <ShoppingCart size={27} />
               <span>{count}</span>

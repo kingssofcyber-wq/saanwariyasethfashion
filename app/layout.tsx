@@ -5,40 +5,19 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SalePopup } from "@/components/sale-popup";
 import { ChatWidget } from "@/components/chat-widget";
-
-// Hostinger environment variables must contain a complete URL, including
-// https://. This normalization also tolerates a hostname entered without it.
-const configuredSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-  "https://saanwariyasethfashion.com";
-
-const normalizedSiteUrl = /^https?:\/\//i.test(configuredSiteUrl)
-  ? configuredSiteUrl
-  : `https://${configuredSiteUrl}`;
+import { AdsenseLoader } from "@/components/adsense";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Saanwariya Seth Fashion | Discover Your Everyday Style",
-  description:
-    "Explore sarees, suits, jewellery, watches, bags, footwear and more at Saanwariya Seth Fashion.",
-  metadataBase: new URL(normalizedSiteUrl),
+  metadataBase: new URL(siteConfig.url),
+  title: { default: "Saanwariya Seth Fashion | Indian Fashion, Everyday Style", template: "%s | Saanwariya Seth Fashion" },
+  description: "Explore sarees, suits, jewellery, watches, bags, footwear and lifestyle finds at Saanwariya Seth Fashion. Discover curated collections and helpful style edits.",
+  applicationName: siteConfig.name,
+  alternates: { canonical: "/" },
+  openGraph: { type: "website", url: siteConfig.url, siteName: siteConfig.name, title: "Saanwariya Seth Fashion", description: "Indian fashion and lifestyle collections, thoughtfully brought together." },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body>
-        <Providers>
-          <SiteHeader />
-          <main>{children}</main>
-          <SiteFooter />
-          <ChatWidget />
-          <SalePopup />
-        </Providers>
-      </body>
-    </html>
-  );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return <html lang="en-IN"><body><Providers><AdsenseLoader/><SiteHeader/><main>{children}</main><SiteFooter/><ChatWidget/><SalePopup/></Providers></body></html>;
 }

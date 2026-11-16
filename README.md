@@ -1,60 +1,130 @@
-# Saanwariya Seth Fashion — Reference-Matched Next.js Store
+# Saanwariya Seth Fashion — AdSense & Premium Commerce Edition
 
-Premium multi-category ecommerce starter for **saanwariyasethfashion.com**, using Next.js App Router, React, TypeScript, Node.js, Prisma and MySQL. Prepared for Node.js 22 deployment on Hostinger Business.
+A Next.js 16 / React 19 / TypeScript fashion storefront using Prisma and MySQL.
 
-## Design
+## What's included in this refresh
 
-The storefront now follows the uploaded homepage reference: deep-maroon utility strip, ivory navigation bar, transparent lotus logo, burgundy saree hero, trust strip, seven photo category cards, three editorial category banners, scrolling offer marquee, product sections, sale feature, marketplace panel, WhatsApp chat link and matching footer.
+- Compact homepage product cards (5 columns on wide desktop, responsive at tablet/mobile widths).
+- Premium My Account dashboard, premium login/register screens, and a more polished password show/hide control.
+- Compact PDP main image with six clickable gallery thumbnails; the Product.images JSON field is used when present.
+- Bundled local category images for Suits, Kurtis, Lehengas and Ethnic Wear to avoid unreliable third-party category image URLs.
+- Product-card actions: Wishlist, Compare, Quick View (opens the full PDP), Add to Cart and Buy Now.
+- Product detail page with price/discount, stock status, description, delivery/returns information, verified-purchase reviews, review moderation, and similar products.
+- Compare list (up to four items), stored in the visitor's browser.
+- AdSense loader, responsive ad units and a static root `/ads.txt` publisher file.
+- Ad placements on public content and shopping pages. Ads are intentionally not placed on login, account, cart, checkout, order history or admin pages to keep personal/transaction flows clear and reduce accidental interactions.
+- Expanded Privacy Policy, Cookie Policy, Terms & Conditions, Shipping Policy, Returns & Exchanges, Disclaimer/Affiliate Disclosure, About, Contact and FAQ pages.
+- Original Style Journal articles for useful, relevant site content.
+- Dynamic sitemap and robots metadata routes.
 
-### Brand files
+## Local setup
 
-- `public/brand/saanwariya-seth-fashion-logo.svg` — transparent logo wordmark (SVG)
-- `public/brand/saanwariya-seth-fashion-logo.png` — transparent logo wordmark (PNG)
-- `public/brand/saanwariya-lotus-mark.svg` — transparent lotus emblem (SVG)
-- `public/brand/saanwariya-lotus-mark.png` — transparent lotus emblem (PNG)
-- `public/images/hero-saree.webp` — bundled homepage hero
-- `public/reference/uploaded-homepage-reference.png` — user's source screenshot
-
-## Included
-
-- 30 demo products across fashion, accessories and lifestyle categories.
-- Home, shop, product detail, cart, COD checkout, wishlist, login, register, account, orders, marketplace, about, contact, FAQ, privacy, terms and shipping/returns pages.
-- Admin portal at `/admin`, protected by an ADMIN login.
-- Search, category filtering, sorting, cart, wishlist, demo catalogue seed, product management and order status UI.
-- Scroll reveal, hover animations, marquee, one-per-session sale popup and reduced-motion handling.
-- Official Flipkart affiliate connector placeholder. It requires valid affiliate access and current supported API/feed configuration; it does not scrape Flipkart.
-
-## Run locally (Windows)
-
-Prerequisites: Node.js 22 and MySQL.
-
-```cmd
+```bash
+npm install
 copy .env.example .env
 ```
 
-Edit `.env`, then:
+Edit `.env` with real MySQL and authentication values before running the store. Then create/update all MySQL tables and seed the initial administrator plus demo products:
 
-```cmd
-npm install
-npx prisma db push
-npm run db:seed
+```bash
+npm run db:setup
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+`npm run db:setup` runs `prisma db push` followed by the seed script. Run `npm run db:verify` afterward to confirm all tables, admin and products. See [`DATABASE-ADMIN-SETUP.md`](./DATABASE-ADMIN-SETUP.md) for the exact Hostinger and admin-login steps.
 
-Admin: `http://localhost:3000/admin`. Seed the administrator using the `ADMIN_EMAIL` and `ADMIN_PASSWORD` values set in `.env`, then log in.
+Before production deploy, use a unique strong `AUTH_SECRET`, a unique admin password, a real support email, and the actual business details. Never commit `.env`.
+
+## New database table
+
+This version adds `ProductReview` for verified-purchase ratings and review moderation. After updating this code, apply the additive schema change to the Hostinger MySQL database:
+
+```bash
+npx prisma db push
+```
+
+Then redeploy/build so the generated Prisma Client uses the updated schema. The review API accepts ratings only from a signed-in customer with a delivered order containing that product. New reviews are held for approval in `/admin` before public display.
+
+## Google AdSense setup
+
+Configure these Hostinger environment variables with IDs copied from your own AdSense account:
+
+- `NEXT_PUBLIC_ADSENSE_CLIENT_ID`: `ca-pub-7776844434912624` (publisher ID supplied for this site).
+- `NEXT_PUBLIC_ADSENSE_SLOT_HOME_TOP`
+- `NEXT_PUBLIC_ADSENSE_SLOT_HOME_MID`
+- `NEXT_PUBLIC_ADSENSE_SLOT_SHOP_TOP`
+- `NEXT_PUBLIC_ADSENSE_SLOT_SHOP_INLINE`
+- `NEXT_PUBLIC_ADSENSE_SLOT_PRODUCT_BOTTOM`
+- `NEXT_PUBLIC_ADSENSE_SLOT_CONTENT`
+
+Create responsive display ad units in AdSense and copy each numeric slot ID into the matching variable. The project displays a neutral placeholder when a slot is not configured; it does not fabricate publisher or slot IDs. The global AdSense script is loaded once when a valid client ID is configured.
+
+The static `public/ads.txt` file publishes the seller line for the supplied account ID. Verify that `https://saanwariyasethfashion.com/ads.txt` returns exactly:
+
+```text
+google.com, pub-7776844434912624, DIRECT, f08c47fec0942fa0
+```
+
+The publisher ID above was supplied by the site owner. Google may take several days to recrawl and update the ads.txt status. Ad slot IDs are still blank until created in AdSense.
+
+## AdSense review readiness checklist
+
+- The site contains navigation to About, Contact, Privacy, Cookie, Terms, Shipping, Returns, Disclaimer and original editorial content.
+- Replace the demo catalogue with real items, accurate descriptions, accurate photos, actual stock and prices before asking for a review.
+- Make sure the support email is real and monitored; set your correct legal business name/address and phone if available.
+- Test every public route, contact form, search, product detail, wishlist, compare, cart and checkout.
+- Do not publish copied descriptions, fake reviews, fake discounts, invented business details or misleading product claims.
+- Make advertising clearly distinguishable from store controls and never encourage users to click ads.
+- Add the real publisher ID and slot IDs, confirm `/ads.txt` can be crawled with HTTP 200, and test that ad units render.
+- If serving personalised ads to visitors in the EEA, UK or Switzerland, configure a Google-certified TCF CMP (for example through AdSense Privacy & Messaging) as required by Google's current consent rules.
+
+Adding these features improves completeness and usability but does not guarantee AdSense approval. Google's review also considers the actual live content, quality, navigation, traffic and policy compliance.
+
+## Important business settings to verify before launch
+
+- The current demo checkout uses Cash on Delivery. Connect and test a payment provider before advertising online payment methods.
+- Current demo shipping calculation is ₹79 below ₹999 and free from ₹999. Verify that this matches your fulfilment costs and business policy.
+- Return and exchange eligibility is stated as product-specific; set your actual product/category return terms and make them visible before customers buy.
+- Marketplace/Flipkart purchases are fulfilled under the external marketplace's terms. Use approved affiliate feeds/API and disclose affiliate relationships; do not scrape marketplace pages.
+- Demo stock photos and sample product entries are for testing and must be replaced or verified before accepting real orders.
+
+## Admin account and all database tables
+
+The initial admin email is `admin@saanwariyasethfashion.com` and the display name defaults to `Mivaan Jangra`. The admin password must be set privately as `ADMIN_PASSWORD` in `.env` or Hostinger Environment Variables before running `npm run db:setup`. The seeder deliberately refuses an unset/placeholder password. Admin sign-in is at `/login?next=/admin`; the protected portal is `/admin`.
+
+The Prisma schema creates six database models/tables: `User`, `Product`, `Order`, `OrderItem`, `ContactMessage`, and `ProductReview`. Wishlist and Compare are browser-side features in this version, not separate database tables. Run `npm run db:setup` from the deployed app's project directory to create/update those tables and insert the administrator plus 30 demo products. Run it once for initial setup; re-running the seed also refreshes matching demo catalogue records.
+
+See [`DATABASE-ADMIN-SETUP.md`](./DATABASE-ADMIN-SETUP.md) for complete instructions.
 
 ## Deployment
 
-Use Node.js 22 in Hostinger hPanel, set the environment variables from `.env.example` securely, install dependencies, run `npm run build`, connect MySQL, run Prisma schema push and seed once, then verify the full order/admin flow. Never publish `.env` or use the example admin password on production.
+Hostinger build command:
 
-## Handout
+```bash
+npm run build
+```
 
-See [`HANDOUT.md`](./HANDOUT.md) for the complete project handoff, routes, setup, database, admin, deployment notes, limitations and next-development instructions. See [`DEMO-PRODUCTS.md`](./DEMO-PRODUCTS.md) for the test catalogue.
+Start command:
 
-## Important production gaps
+```bash
+npm run start
+```
 
-This is a functional starter, not yet a fully operated production store. COD is the included checkout mode; a payment gateway and courier integration still need to be configured. Demo product photos/prices/stock must be verified against real SKUs. The Flipkart adapter requires valid affiliate credentials and an API/feed format that is currently supported. Confirm all contact details and return/shipping policies before accepting orders.
+Node.js: 22. After updating Prisma schema, run `npx prisma db push` against the production database using the correct Hostinger connection string before running the new review functions.
 
-A production build was not run while creating this ZIP; run `npm run build` after installing dependencies in your local/Hostinger environment.
+## Detailed AdSense review handout
+
+See [`ADSENSE-REVIEW-READINESS.md`](./ADSENSE-REVIEW-READINESS.md) for the complete publisher-ID, ad-slot, ads.txt, content, policy, CMP, database-update and deployment checklist. Google requires AdSense account holders to be at least 18; if the site manager is under 18, a parent or guardian must be the actual account holder using their own Google Account.
+
+
+## Latest requested refinements
+
+- Premium member dashboard and redesigned login/register pages.
+- Compact homepage merchandise cards and a reduced-size PDP image with six interactive thumbnails.
+- Local reference-derived image assets have been bundled for Suits, Kurtis, Lehengas and Ethnic Wear.
+- The AdSense client ID and `/ads.txt` seller record use the publisher ID supplied for this site: `ca-pub-7776844434912624`. Verify the live endpoint and ensure Hostinger does not override the client ID with an older value.
+
+
+## Footer credit
+
+The site footer displays “Made with ♥ by Mivaan Jangra.”

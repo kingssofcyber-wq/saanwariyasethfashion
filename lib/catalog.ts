@@ -1,12 +1,12 @@
 export type Product = {
   id: string; slug: string; name: string; brand: string; description: string;
-  category: string; price: number; mrp: number; image: string; stock: number;
+  category: string; price: number; mrp: number; image: string; images?: string | null; stock: number;
   featured: boolean; source?: "OWN" | "FLIPKART"; externalUrl?: string | null;
 };
 
 export const categories = [
   { name: "Sarees", slug: "sarees", note: "Drape your story", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=85" },
-  { name: "Suits & Sets", slug: "suits", note: "Everyday to occasion", image: "https://images.unsplash.com/photo-1583391733956-6c78276477e8?auto=format&fit=crop&w=900&q=85" },
+  { name: "Suits & Sets", slug: "suits", note: "Everyday to occasion", image: "/images/suits-category.webp" },
   { name: "Jewellery", slug: "jewellery", note: "Little details, big charm", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85" },
   { name: "Watches", slug: "watches", note: "Time well styled", image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85" },
   { name: "Bags", slug: "bags", note: "Carry your confidence", image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85" },
@@ -18,7 +18,7 @@ export const categories = [
 
 export const demoProducts: Product[] = [
   { id:"p1", slug:"royal-zari-silk-saree", name:"Royal Zari Silk Festive Saree", brand:"Saanwariya Heritage", description:"A graceful festive saree with an elegant woven border and a rich, celebratory drape. A lovely choice for family occasions and special evenings.", category:"Sarees", price:1899, mrp:3299, image:"https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=85", stock:18, featured:true },
-  { id:"p2", slug:"mauve-embroidered-suit", name:"Mauve Embroidered Suit Set", brand:"Saanwariya Studio", description:"A thoughtfully styled suit set with delicate embroidery and a comfortable silhouette for celebrations, gatherings and everyday elegance.", category:"Suits & Sets", price:1499, mrp:2499, image:"https://images.unsplash.com/photo-1583391733956-6c78276477e8?auto=format&fit=crop&w=900&q=85", stock:12, featured:true },
+  { id:"p2", slug:"mauve-embroidered-suit", name:"Mauve Embroidered Suit Set", brand:"Saanwariya Studio", description:"A thoughtfully styled suit set with delicate embroidery and a comfortable silhouette for celebrations, gatherings and everyday elegance.", category:"Suits & Sets", price:1499, mrp:2499, image:"/images/suits-gallery-01.webp", stock:12, featured:true },
   { id:"p3", slug:"classic-gold-tone-earrings", name:"Classic Gold-Tone Statement Earrings", brand:"Aurum Edit", description:"Lightweight statement earrings with a timeless gold-tone finish. Made to bring a little sparkle to both festive and modern looks.", category:"Jewellery", price:599, mrp:999, image:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=85", stock:30, featured:true },
   { id:"p4", slug:"minimal-rose-watch", name:"Minimal Rose Dial Watch", brand:"Meridian", description:"A versatile, minimal watch with a polished finish and an easy-to-style profile for workdays and weekends.", category:"Watches", price:1299, mrp:2199, image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85", stock:9, featured:true },
   { id:"p5", slug:"structured-everyday-tote", name:"Structured Everyday Tote Bag", brand:"The Carry Edit", description:"A clean, structured tote that keeps daily essentials organised while adding a smart finishing touch to your outfit.", category:"Bags", price:1099, mrp:1799, image:"https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=85", stock:15, featured:true },
@@ -28,12 +28,12 @@ export const demoProducts: Product[] = [
   { id:"p9", slug:"pearl-layered-necklace", name:"Pearl Layered Necklace", brand:"Aurum Edit", description:"An elegant layered necklace with a pearl-inspired finish for a refined statement at celebrations and dinners.", category:"Jewellery", price:749, mrp:1199, image:"https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=85", stock:20, featured:true },
   { id:"p10", slug:"midnight-classic-watch", name:"Midnight Classic Steel Watch", brand:"Meridian", description:"A polished everyday timepiece with a confident dark dial and a classic metal bracelet look.", category:"Watches", price:1599, mrp:2699, image:"https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=85", stock:11, featured:false },
   { id:"p11", slug:"printed-cotton-saree", name:"Everyday Printed Cotton Saree", brand:"Saanwariya Heritage", description:"A comfortable printed saree made for easy, graceful everyday styling. Pair it with your favourite blouse and understated jewellery.", category:"Sarees", price:999, mrp:1699, image:"https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=900&q=85", stock:19, featured:false },
-  { id:"p12", slug:"pastel-kurta-set", name:"Pastel Kurta & Trouser Set", brand:"Saanwariya Studio", description:"A versatile pastel kurta set with an easy fit, ideal for work, brunch and relaxed festive moments.", category:"Suits & Sets", price:1199, mrp:1999, image:"https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=900&q=85", stock:16, featured:true }
+  { id:"p12", slug:"pastel-kurta-set", name:"Pastel Kurta & Trouser Set", brand:"Saanwariya Studio", description:"A versatile pastel kurta set with an easy fit, ideal for work, brunch and relaxed festive moments.", category:"Suits & Sets", price:1199, mrp:1999, image:"/images/suits-gallery-03.webp", stock:16, featured:true }
 
   ,{ id:"p13", slug:"ruby-woven-occasion-saree", name:"Ruby Woven Occasion Saree", brand:"Saanwariya Heritage", description:"A rich ruby-toned occasion saree with traditional woven detailing and a graceful drape for celebrations and family gatherings.", category:"Sarees", price:2199, mrp:3799, image:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=900&q=85", stock:13, featured:true }
   ,{ id:"p14", slug:"midnight-floral-georgette-saree", name:"Midnight Floral Georgette Saree", brand:"Saanwariya Heritage", description:"A lightweight floral-inspired drape designed for evening occasions and effortless festive styling.", category:"Sarees", price:1399, mrp:2299, image:"https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85", stock:17, featured:false }
-  ,{ id:"p15", slug:"sage-green-anarkali-set", name:"Sage Green Anarkali Suit Set", brand:"Saanwariya Studio", description:"A soft sage-green festive set with an elegant flowing silhouette and delicate detailing for special days.", category:"Suits & Sets", price:1799, mrp:2999, image:"https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=900&q=85", stock:10, featured:true }
-  ,{ id:"p16", slug:"ivory-straight-kurta-set", name:"Ivory Straight Kurta Set", brand:"Saanwariya Studio", description:"A versatile ivory kurta set with clean lines and an understated look for workdays and relaxed occasions.", category:"Suits & Sets", price:1099, mrp:1899, image:"https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=900&q=85", stock:21, featured:false }
+  ,{ id:"p15", slug:"sage-green-anarkali-set", name:"Sage Green Anarkali Suit Set", brand:"Saanwariya Studio", description:"A soft sage-green festive set with an elegant flowing silhouette and delicate detailing for special days.", category:"Suits & Sets", price:1799, mrp:2999, image:"/images/suits-gallery-02.webp", stock:10, featured:true }
+  ,{ id:"p16", slug:"ivory-straight-kurta-set", name:"Ivory Straight Kurta Set", brand:"Saanwariya Studio", description:"A versatile ivory kurta set with clean lines and an understated look for workdays and relaxed occasions.", category:"Suits & Sets", price:1099, mrp:1899, image:"/images/suits-gallery-04.webp", stock:21, featured:false }
   ,{ id:"p17", slug:"kundan-inspired-choker-set", name:"Kundan-Inspired Choker Set", brand:"Aurum Edit", description:"A statement choker-inspired jewellery set with an ornate finish for festive and wedding guest styling.", category:"Jewellery", price:1299, mrp:2199, image:"https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=85", stock:8, featured:true }
   ,{ id:"p18", slug:"everyday-pearl-stud-earrings", name:"Everyday Pearl Stud Earrings", brand:"Aurum Edit", description:"Simple pearl-inspired studs that add a polished finishing touch to everyday and occasion outfits.", category:"Jewellery", price:349, mrp:699, image:"https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=85", stock:35, featured:false }
   ,{ id:"p19", slug:"silver-mesh-minimal-watch", name:"Silver Mesh Minimal Watch", brand:"Meridian", description:"A clean, minimal timepiece with a silver mesh-inspired bracelet look for versatile daily styling.", category:"Watches", price:1499, mrp:2499, image:"https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=900&q=85", stock:14, featured:true }
@@ -51,3 +51,39 @@ export const demoProducts: Product[] = [
 ];
 
 export const money = (amount: number) => new Intl.NumberFormat("en-IN", { style:"currency", currency:"INR", maximumFractionDigits:0 }).format(amount);
+
+
+const suitsGallery = [
+  "/images/suits-gallery-01.webp",
+  "/images/suits-gallery-02.webp",
+  "/images/suits-gallery-03.webp",
+  "/images/suits-gallery-04.webp",
+  "/images/suits-gallery-05.webp",
+  "/images/suits-gallery-06.webp",
+];
+
+/** Uses a bundled image when an older demo suit URL is known to be unreliable. */
+export function resolveProductImage(product: Product): string {
+  if (product.category === "Suits & Sets" && /photo-(1583391733956|1597983073493|1609357605129)/.test(product.image)) {
+    return "/images/suits-category.webp";
+  }
+  return product.image || (product.category === "Suits & Sets" ? suitsGallery[0] : "/brand/saanwariya-seth-fashion-logo.svg");
+}
+
+/** Returns up to six distinct PDP images, preferring product-managed gallery URLs. */
+export function getProductGalleryImages(product: Product): string[] {
+  let managed: string[] = [];
+  if (product.images) {
+    try {
+      const parsed: unknown = JSON.parse(product.images);
+      if (Array.isArray(parsed)) managed = parsed.filter((value): value is string => typeof value === "string" && value.trim().length > 0);
+    } catch { /* Older products store a single image only. */ }
+  }
+  const sameCategory = demoProducts.filter((item) => item.category === product.category && item.slug !== product.slug).map(resolveProductImage);
+  const categoryImage = categories.find((item) => item.name === product.category)?.image;
+  const candidates = product.category === "Suits & Sets"
+    ? [resolveProductImage(product), ...managed, ...suitsGallery]
+    : [resolveProductImage(product), ...managed, ...sameCategory, ...(categoryImage ? [categoryImage] : []), ...demoProducts.filter((item) => item.slug !== product.slug).map(resolveProductImage)];
+  const unique = [...new Set(candidates.filter((value) => typeof value === "string" && value.trim().length > 0))];
+  return unique.slice(0, 6);
+}

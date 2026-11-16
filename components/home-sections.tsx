@@ -6,9 +6,9 @@ import { ProductGrid } from "@/components/product-grid";
 const homeCategories = [
   { name: "Sarees", image: categories[0].image, href: "/shop?category=Sarees" },
   { name: "Suits", image: categories[1].image, href: "/shop?category=Suits%20%26%20Sets" },
-  { name: "Kurtis", image: "https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=700&q=85", href: "/shop?category=Suits%20%26%20Sets" },
-  { name: "Lehengas", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=85", href: "/shop?category=Sarees" },
-  { name: "Ethnic Wear", image: "https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=700&q=85", href: "/shop?category=Sarees" },
+  { name: "Kurtis", image: "/images/kurtis-category.webp", href: "/shop?category=Suits%20%26%20Sets" },
+  { name: "Lehengas", image: "/images/lehenga-category.webp", href: "/shop?category=Sarees" },
+  { name: "Ethnic Wear", image: "/images/ethnic-wear-category.webp", href: "/shop?category=Sarees" },
   { name: "Jewellery", image: categories[2].image, href: "/shop?category=Jewellery" },
   { name: "Accessories", image: categories[8].image, href: "/shop?category=Accessories" },
 ];
@@ -55,11 +55,11 @@ export function PromoCollections() {
       <span className="ss-promo-copy"><b>THE SAREE EDIT</b><strong>Traditional Elegance<br />for Every You</strong><i>Explore Sarees <ArrowRight size={17} /></i></span>
     </Link>
     <Link href="/shop?category=Suits%20%26%20Sets" className="ss-promo ss-promo-green">
-      <img src="https://images.unsplash.com/photo-1583391733956-6c78276477e8?auto=format&fit=crop&w=1100&q=90" alt="Teal embroidered suit collection" loading="lazy" />
+      <img src="/images/suits-gallery-02.webp" alt="Teal embroidered suit collection" loading="lazy" />
       <span className="ss-promo-copy"><b>THE SUIT EDIT</b><strong>Grace in<br />Every Thread</strong><i>Explore Suits <ArrowRight size={17} /></i></span>
     </Link>
     <Link href="/shop?category=Suits%20%26%20Sets" className="ss-promo ss-promo-peach">
-      <img src="https://images.unsplash.com/photo-1597983073493-88cd35cf93b0?auto=format&fit=crop&w=1100&q=90" alt="Pink kurti collection" loading="lazy" />
+      <img src="/images/kurtis-category.webp" alt="Pink kurti collection" loading="lazy" />
       <span className="ss-promo-copy"><b>THE KURTI EDIT</b><strong>Stay Stylish<br />Always</strong><i>Explore Kurtis <ArrowRight size={17} /></i></span>
     </Link>
   </section>;

@@ -34,3 +34,8 @@ These sample listings are seeded into MySQL by `npm run db:seed`. Names and phot
 | 28 | Soft Neutral Cushion Cover Set | Home & Living | ₹549 | ₹899 |
 | 29 | Minimal Everyday Sunglasses | Accessories | ₹499 | ₹899 |
 | 30 | Gold-Tone Layered Bracelet | Jewellery | ₹449 | ₹799 |
+
+
+## Product gallery and category image note
+
+Product detail pages display up to six thumbnails. If a product has an `images` JSON array in the existing Product.images field, those URLs are preferred; otherwise the gallery uses the main image and category/demo imagery. Suits, Kurtis, Lehengas and Ethnic Wear category cards use bundled local WebP images. Demo images are illustrative and should be replaced with exact photos for each live SKU.

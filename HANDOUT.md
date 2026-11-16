@@ -82,7 +82,8 @@ The admin portal is protected. An admin must be seeded into the database and log
 - `lib/auth.ts` — session/authentication helpers.
 - `lib/prisma.ts` — Prisma client.
 - `prisma/schema.prisma` — MySQL database schema.
-- `prisma/seed.ts` — creates admin and demo products.
+- `prisma/seed.ts` — creates/updates the admin and demo products; requires a private `ADMIN_PASSWORD` of at least 16 characters.
+- `DATABASE-ADMIN-SETUP.md` — exact commands for creating all Prisma tables and the initial admin account.
 - `app/api/` — product, auth, order, contact, admin and Flipkart starter routes.
 - `app/globals.css` — complete existing component styling plus reference-matched `ss-*` theme overrides.
 - `public/brand/` — transparent logo assets.
@@ -101,8 +102,7 @@ Prerequisites: Node.js 22, npm and a MySQL database (local MySQL or a Hostinger 
 
 ```cmd
 npm install
-npx prisma db push
-npm run db:seed
+npm run db:setup
 npm run dev
 ```
 
@@ -123,7 +123,7 @@ Set these in `.env` locally and in the Hostinger Node.js app environment setting
 - `AUTH_SECRET` — unique random secret of at least 32 characters.
 - `ADMIN_NAME` — admin display name.
 - `ADMIN_EMAIL` — initial administrator email.
-- `ADMIN_PASSWORD` — strong unique admin password.
+- `ADMIN_PASSWORD` — private admin password, minimum 16 characters; never commit it.
 - `NEXT_PUBLIC_SITE_URL` — production website URL.
 - `FLIPKART_AFFILIATE_ID` and `FLIPKART_AFFILIATE_TOKEN` — only if the store has valid official affiliate access.
 
@@ -131,12 +131,14 @@ The `.env.example` contains demo admin defaults for local setup only. Change the
 
 ## 8. Admin setup
 
-The seed script uses the values in `.env` to create/update the initial administrator. Then:
+The seed script uses the values in `.env`/Hostinger Environment Variables to create/update the initial administrator. The default admin login email is `admin@saanwariyasethfashion.com` (the login form uses email, not a separate username) and display name is `Mivaan Jangra`. Set a private `ADMIN_PASSWORD` of at least 16 characters, then run `npm run db:setup` to create/update all database tables and seed the admin plus 30 demo products.
 
-1. Run `npm run db:seed`.
-2. Visit `/login`.
+1. Run `npm run db:setup` from the deployed project directory, then `npm run db:verify` to confirm the tables/admin/product count.
+2. Visit `/login?next=/admin`.
 3. Sign in using the configured `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
 4. Visit `/admin`.
+
+The Prisma schema defines six models/tables: `User`, `Product`, `Order`, `OrderItem`, `ContactMessage`, and `ProductReview`. Wishlist and Compare are browser-side features, not separate MySQL tables in this version.
 
 Do not use example/demo credentials on a public site. Change the admin password, use a unique secret, and verify access control on deployment.
 
@@ -184,3 +186,16 @@ Still needs store-owner credentials/configuration or external service integratio
 ## 12. Instructions for future development
 
 Continue from the included source, not an unrelated fresh template. Preserve the uploaded homepage reference, logo paths, maroon/ivory design direction, 30 demo products, `/admin` route and all existing app routes. Make changes in small batches, run TypeScript/build checks after edits, and return a fresh complete ZIP plus an updated handout whenever a new version is created.
+
+
+## November 2026 visual and AdSense update
+
+- Premium My Account and auth screens were added.
+- Homepage product tiles are smaller; PDP uses a smaller hero image with six clickable thumbnails.
+- Local bundled category images fix the Suit/Kurti/Lehenga tiles that previously relied on remote image URLs.
+- The static `public/ads.txt` file publishes `google.com, pub-7776844434912624, DIRECT, f08c47fec0942fa0`. Confirm this ID matches the AdSense account; responsive ad slots still need their own numeric slot IDs.
+
+
+## Footer creator credit
+
+The final footer line is “Made with ♥ by Mivaan Jangra.”

@@ -1,34 +1,30 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-title Saanwariya Seth Fashion - Setup
+title Saanwariya Seth Fashion - Database and Admin Setup
 if not exist .env (
   copy .env.example .env >nul
   echo Created .env from .env.example.
-  echo IMPORTANT: Edit .env and add your Hostinger/MySQL database details and your own admin password.
+  echo IMPORTANT: Add DATABASE_URL, AUTH_SECRET and a private ADMIN_PASSWORD.
   notepad .env
   echo Save and close Notepad after updating the values.
   pause
 )
 echo.
-echo [1/4] Installing packages...
+echo [1/3] Installing packages...
 call npm install
 if errorlevel 1 goto failed
 echo.
-echo [2/4] Generating database tables...
-call npx prisma db push
+echo [2/3] Creating/updating all Prisma database tables, admin user and demo products...
+call npm run db:setup
 if errorlevel 1 goto failed
 echo.
-echo [3/4] Adding administrator and 30 demo products...
-call npm run db:seed
-if errorlevel 1 goto failed
-echo.
-echo [4/4] Starting the website...
+echo [3/3] Starting the website...
 call npm run dev
 goto end
 :failed
 echo.
-echo Setup stopped because a command failed. Check your .env database values and terminal error.
+echo Setup stopped. Check DATABASE_URL, ADMIN_PASSWORD and the command output.
 pause
 :end
 endlocal
