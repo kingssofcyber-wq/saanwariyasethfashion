@@ -15,7 +15,6 @@ export function getOrganizationSchema() {
     name: siteConfig.name,
     url: siteConfig.url,
     description: "An Indian online fashion and lifestyle store featuring sarees, suits and sets, jewellery, watches, bags, footwear, accessories and home finds.",
-    url: siteConfig.url,
     logo: absoluteUrl("/brand/saanwariya-seth-fashion-logo.png"),
     image: absoluteUrl("/brand/saanwariya-seth-fashion-logo.png"),
     currenciesAccepted: "INR",
