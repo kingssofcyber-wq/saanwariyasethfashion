@@ -2,3 +2,18 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /api/
+Allow: /api/mcp
+Allow: /api/mcp/
+Disallow: /account
+Disallow: /cart
+Disallow: /checkout
+Disallow: /orders
+Disallow: /login
+Disallow: /register
+Disallow: /wishlist
+Disallow: /compare
+
+# Content usage preference (a publisher signal; not a replacement for legal terms)
+Content-Signal: search=yes, ai-train=no
+
+Sitemap: https://saanwariyasethfashion.com/sitemap.xml

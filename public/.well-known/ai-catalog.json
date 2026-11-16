@@ -1,0 +1,21 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Saanwariya Seth Fashion",
+    "identifier": "https://saanwariyasethfashion.com",
+    "documentationUrl": "https://saanwariyasethfashion.com/llms.txt",
+    "logoUrl": "https://saanwariyasethfashion.com/brand/saanwariya-seth-fashion-logo.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:saanwariyasethfashion.com:mcp:store",
+      "displayName": "Saanwariya Seth Fashion public store tools",
+      "type": "application/mcp-server-card+json",
+      "mediaType": "application/mcp-server-card+json",
+      "url": "https://saanwariyasethfashion.com/api/mcp/server-card",
+      "description": "Read-only public product search and store information.",
+      "version": "1.0.0",
+      "tags": ["fashion", "ecommerce", "products", "India", "INR", "read-only"]
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import { SalePopup } from "@/components/sale-popup";
 import { ChatWidget } from "@/components/chat-widget";
 import { AdsenseLoader } from "@/components/adsense";
 import { siteConfig } from "@/lib/site-config";
+import { WebMcpTools } from "@/components/webmcp-tools";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -19,5 +20,22 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return <html lang="en-IN"><body><Providers><AdsenseLoader/><SiteHeader/><main>{children}</main><SiteFooter/><ChatWidget/><SalePopup/></Providers></body></html>;
+  return <html lang="en-IN">
+    <head>
+      <link rel="ai-catalog" href={`${siteConfig.url}/.well-known/ai-catalog.json`} />
+      <link rel="alternate" type="text/markdown" href={`${siteConfig.url}/home.md`} />
+      <link rel="mcp-server-card" type="application/mcp-server-card+json" href={`${siteConfig.url}/api/mcp/server-card`} />
+    </head>
+    <body>
+      <Providers>
+        <AdsenseLoader />
+        <WebMcpTools />
+        <SiteHeader />
+        <main>{children}</main>
+        <SiteFooter />
+        <ChatWidget />
+        <SalePopup />
+      </Providers>
+    </body>
+  </html>;
 }

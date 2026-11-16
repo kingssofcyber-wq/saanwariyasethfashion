@@ -15,7 +15,10 @@ A Next.js 16 / React 19 / TypeScript fashion storefront using Prisma and MySQL.
 - Ad placements on public content and shopping pages. Ads are intentionally not placed on login, account, cart, checkout, order history or admin pages to keep personal/transaction flows clear and reduce accidental interactions.
 - Expanded Privacy Policy, Cookie Policy, Terms & Conditions, Shipping Policy, Returns & Exchanges, Disclaimer/Affiliate Disclosure, About, Contact and FAQ pages.
 - Original Style Journal articles for useful, relevant site content.
-- Dynamic sitemap and robots metadata routes.
+- Request-time sitemap plus a public `robots.txt` with Content-Signal and Sitemap declarations.
+- `llms.txt`, HTML-to-Markdown content negotiation, JSON-LD across key pages, an AI Catalog and MCP Server Card discovery documents.
+- Read-only MCP HTTP tools and optional browser WebMCP tools for product search and public store information.
+- Admin-only reset/verify scripts that do not reseed or overwrite the demo catalogue.
 
 ## Local setup
 
@@ -24,14 +27,15 @@ npm install
 copy .env.example .env
 ```
 
-Edit `.env` with real MySQL and authentication values before running the store. Then create/update all MySQL tables and seed the initial administrator plus demo products:
+Edit `.env` with real MySQL and authentication values before running the store. For a brand-new database only, create/update the schema and seed the initial admin plus demo products:
 
 ```bash
 npm run db:setup
+npm run db:verify
 npm run dev
 ```
 
-`npm run db:setup` runs `prisma db push` followed by the seed script. Run `npm run db:verify` afterward to confirm all tables, admin and products. See [`DATABASE-ADMIN-SETUP.md`](./DATABASE-ADMIN-SETUP.md) for the exact Hostinger and admin-login steps.
+`npm run db:setup` runs `prisma db push` followed by the seed script. Re-running it updates matching demo catalogue rows, so do not use it just to reset an admin password. Use `npm run db:admin:reset` and `npm run db:admin:verify` for admin recovery; those scripts touch only the admin user.
 
 Before production deploy, use a unique strong `AUTH_SECRET`, a unique admin password, a real support email, and the actual business details. Never commit `.env`.
 
@@ -90,9 +94,9 @@ Adding these features improves completeness and usability but does not guarantee
 
 ## Admin account and all database tables
 
-The initial admin email is `admin@saanwariyasethfashion.com` and the display name defaults to `Mivaan Jangra`. The admin password must be set privately as `ADMIN_PASSWORD` in `.env` or Hostinger Environment Variables before running `npm run db:setup`. The seeder deliberately refuses an unset/placeholder password. Admin sign-in is at `/login?next=/admin`; the protected portal is `/admin`.
+The initial admin email is `admin@saanwariyasethfashion.com` and the display name defaults to `Mivaan Jangra`. The admin password must be set privately as `ADMIN_PASSWORD` in `.env` or Hostinger Environment Variables before initial seeding or admin reset. The initial seeder refuses an unset/placeholder password. Admin sign-in is at `/login?next=/admin`; the protected portal is `/admin`. If login fails, make sure the reset command uses the exact MySQL database used by the live app, then run `npm run db:admin:reset` followed by `npm run db:admin:verify`. Keep `ADMIN_EMAIL`, `ADMIN_PASSWORD` and `AUTH_SECRET` aligned between the DB reset environment and Hostinger runtime.
 
-The Prisma schema creates six database models/tables: `User`, `Product`, `Order`, `OrderItem`, `ContactMessage`, and `ProductReview`. Wishlist and Compare are browser-side features in this version, not separate database tables. Run `npm run db:setup` from the deployed app's project directory to create/update those tables and insert the administrator plus 30 demo products. Run it once for initial setup; re-running the seed also refreshes matching demo catalogue records.
+The Prisma schema creates six database models/tables: `User`, `Product`, `Order`, `OrderItem`, `ContactMessage`, and `ProductReview`. Wishlist and Compare are browser-side features in this version, not separate database tables. Run `npm run db:setup` once for initial setup to create/update those tables and insert the administrator plus 30 demo products. For later admin login recovery, use `npm run db:admin:reset` instead; it does not re-seed products.
 
 See [`DATABASE-ADMIN-SETUP.md`](./DATABASE-ADMIN-SETUP.md) for complete instructions.
 
@@ -111,6 +115,10 @@ npm run start
 ```
 
 Node.js: 22. After updating Prisma schema, run `npx prisma db push` against the production database using the correct Hostinger connection string before running the new review functions.
+
+## Agent discovery and admin recovery handout
+
+See [`AGENT-READINESS-AND-ADMIN-FIX.md`](./AGENT-READINESS-AND-ADMIN-FIX.md) for the 11 agent-readiness points, live endpoint test commands, WebMCP browser limitations, required owner profile URLs, and admin-login troubleshooting. A Windows PowerShell endpoint check is included at `scripts/check-agent-readiness.ps1`.
 
 ## Detailed AdSense review handout
 

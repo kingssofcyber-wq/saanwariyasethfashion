@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { demoProducts } from "@/lib/catalog";
 import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = ["", "/shop", "/about", "/contact", "/faq", "/privacy", "/terms", "/shipping-returns", "/exchange-returns", "/cookie-policy", "/disclaimer", "/style-journal", "/shop/marketplace"];
   const now = new Date();

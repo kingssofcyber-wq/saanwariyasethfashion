@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AdUnit } from "@/components/adsense";
+import { JsonLd } from "@/components/json-ld";
+import { getFaqPageSchema } from "@/lib/structured-data";
 export const metadata: Metadata = { title: "Frequently Asked Questions", description: "Answers about shopping, orders, Cash on Delivery, shipping, returns, product information and marketplace purchases.", alternates: { canonical: "/faq" } };
-const faqs = [
+const faqs: Array<[string, string]> = [
   ["How do I place an order?", "Browse the shop, open a product page, check its details and availability, then add it to your bag. Continue to checkout and sign in or create an account when prompted. Confirm that your address and order summary are correct before placing the order."],
   ["Which payment method is currently available?", "The current store checkout is configured for Cash on Delivery. Online payment methods should only be used when an official payment gateway is displayed in the checkout."],
   ["How much does shipping cost?", "The current checkout applies ₹79 shipping on orders below ₹999 and complimentary standard shipping on eligible orders of ₹999 or more. The final amount is displayed in the order summary before you place an order."],
@@ -17,5 +19,5 @@ const faqs = [
   ["Are product photos always the exact item?", "Some catalogue photographs may be illustrative. Review each product's specific description and product information, and contact support if you need clarification before ordering."],
 ];
 export default function FAQPage() {
-  return <div className="container page-wrap content-page faq-page"><div className="breadcrumbs"><Link href="/">Home</Link> / <span>FAQs</span></div><span className="eyebrow">GOOD TO KNOW</span><h1>Questions, <i>answered.</i></h1><p className="contact-intro">Find helpful information about shopping with Saanwariya Seth Fashion. If you cannot find an answer, <Link href="/contact">contact our support team</Link>.</p><div className="faq-list">{faqs.map(([question, answer], index) => <details className="faq-item" key={question}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}</summary><p>{answer}</p></details>)}</div><AdUnit slotKey="content" className="legal-ad-slot"/></div>;
+  return <div className="container page-wrap content-page faq-page"><JsonLd data={getFaqPageSchema(faqs)}/><div className="breadcrumbs"><Link href="/">Home</Link> / <span>FAQs</span></div><span className="eyebrow">GOOD TO KNOW</span><h1>Questions, <i>answered.</i></h1><p className="contact-intro">Find helpful information about shopping with Saanwariya Seth Fashion. If you cannot find an answer, <Link href="/contact">contact our support team</Link>.</p><div className="faq-list">{faqs.map(([question, answer], index) => <details className="faq-item" key={question}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}</summary><p>{answer}</p></details>)}</div><AdUnit slotKey="content" className="legal-ad-slot"/></div>;
 }

@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -25,7 +26,7 @@ async function main() {
   ]);
 
   if (!admin || admin.role !== "ADMIN") {
-    throw new Error(`Admin ${email} was not found with ADMIN role. Run npm run db:seed after setting ADMIN_PASSWORD.`);
+    throw new Error(`Admin ${email} was not found with ADMIN role. Run npm run db:admin:reset with the same DATABASE_URL and ADMIN_PASSWORD as the live application.`);
   }
 
   console.log(`Admin ready: ${admin.name} <${admin.email}> (${admin.role})`);

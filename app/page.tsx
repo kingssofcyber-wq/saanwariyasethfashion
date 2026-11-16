@@ -3,6 +3,8 @@ import { demoProducts, type Product } from "@/lib/catalog";
 import { Hero, MarqueeStrip, CategorySection, PromoCollections, FeaturedSection, NewArrivalsSection, EditorialBanner, SaleFeature, MarketplaceBanner, TrustStrip, ClosingNote } from "@/components/home-sections";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { AdUnit } from "@/components/adsense";
+import { JsonLd } from "@/components/json-ld";
+import { getHomepageSchema } from "@/lib/structured-data";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +20,7 @@ async function getHomeProducts(): Promise<Product[]> {
 export default async function Home() {
   const products = await getHomeProducts();
   return <>
+    <JsonLd data={getHomepageSchema(products)} />
     <Hero />
     <AdUnit slotKey="homeTop" className="home-ad-slot" />
     <TrustStrip />

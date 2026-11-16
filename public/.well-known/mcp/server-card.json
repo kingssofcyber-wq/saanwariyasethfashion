@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "protocolVersion": "2025-03-26",
+  "serverInfo": {
+    "name": "com.saanwariyasethfashion/store",
+    "version": "1.0.0"
+  },
+  "description": "Read-only public product search and store information for Saanwariya Seth Fashion.",
+  "mcp_endpoint": "https://saanwariyasethfashion.com/api/mcp",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://saanwariyasethfashion.com/api/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "authentication": {
+    "required": false,
+    "schemes": []
+  }
+}

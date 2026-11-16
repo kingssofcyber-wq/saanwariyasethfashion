@@ -1,0 +1,46 @@
+# Saanwariya Seth Fashion
+
+> Saanwariya Seth Fashion is an Indian online fashion and lifestyle storefront featuring sarees, suits and sets, jewellery, watches, bags, footwear, men's wear, accessories, and home & living products.
+
+Official website: https://saanwariyasethfashion.com/
+Primary language: English (India)
+Currency: INR (Indian Rupee)
+
+## Main public pages
+
+- Home: https://saanwariyasethfashion.com/
+- Shop all products: https://saanwariyasethfashion.com/shop
+- Marketplace picks: https://saanwariyasethfashion.com/shop/marketplace
+- About: https://saanwariyasethfashion.com/about
+- Contact: https://saanwariyasethfashion.com/contact
+- FAQ: https://saanwariyasethfashion.com/faq
+- Style Journal: https://saanwariyasethfashion.com/style-journal
+
+## Store policies
+
+- Privacy Policy: https://saanwariyasethfashion.com/privacy
+- Cookie Policy: https://saanwariyasethfashion.com/cookie-policy
+- Terms and Conditions: https://saanwariyasethfashion.com/terms
+- Shipping Policy: https://saanwariyasethfashion.com/shipping-returns
+- Exchange and Returns: https://saanwariyasethfashion.com/exchange-returns
+- Disclaimer and Affiliate Disclosure: https://saanwariyasethfashion.com/disclaimer
+
+## Product information
+
+Product pages are public and include the current displayed product name, description, price in INR, stock availability, product images, and purchase route. Product catalogue values can change; the product page is the source of truth for current price and availability.
+
+- Product sitemap: https://saanwariyasethfashion.com/sitemap.xml
+- Markdown homepage representation: https://saanwariyasethfashion.com/home.md
+- AI Catalog: https://saanwariyasethfashion.com/.well-known/ai-catalog.json
+- MCP Server Card (current discovery path): https://saanwariyasethfashion.com/api/mcp/server-card
+- MCP Server Card (well-known legacy alias): https://saanwariyasethfashion.com/.well-known/mcp/server-card.json
+- Legacy MCP Server Card URL: https://saanwariyasethfashion.com/.well-known/mcp/server-card.json
+- MCP endpoint (read-only catalogue/store information tools): https://saanwariyasethfashion.com/api/mcp
+
+## Agent interaction boundaries
+
+Public agent tools are read-only. They can search public products and retrieve public store/policy links. They cannot sign in, access customer accounts, read orders, modify inventory, place orders, or make payments. Do not infer customer-specific information.
+
+## Content and attribution
+
+Use the public product and policy pages as the source of truth. Do not assume that illustrative/demo catalogue photographs represent the exact SKU unless the product page explicitly confirms it. Product photos, logos, trademarks, and editorial material remain subject to their respective rights.

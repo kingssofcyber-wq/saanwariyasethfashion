@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { demoProducts, type Product, resolveProductImage } from "@/lib/catalog";
 import { ProductDetail } from "@/components/product-detail";
 import { AdUnit } from "@/components/adsense";
+import { JsonLd } from "@/components/json-ld";
+import { getProductPageSchema } from "@/lib/structured-data";
 
 type PageProps = { params: Promise<{ slug: string }> };
 async function findProduct(slug: string): Promise<Product | null> {
@@ -57,6 +59,7 @@ export default async function ProductPage({ params }: PageProps) {
     similar = demoProducts.filter((item) => item.category === product.category && item.id !== product.id).slice(0, 4);
   }
   return <div className="container page-wrap pdp-page">
+    <JsonLd data={getProductPageSchema(product, { rating, count })} />
     <div className="breadcrumbs"><Link href="/">Home</Link> / <Link href="/shop">Shop</Link> / <Link href={`/shop?category=${encodeURIComponent(product.category)}`}>{product.category}</Link> / <span>{product.name}</span></div>
     <ProductDetail product={product} similar={similar} reviewSummary={{ reviews: reviews.map((review) => ({ ...review, createdAt: review.createdAt.toISOString() })), rating, count }}/>
     <AdUnit slotKey="productBottom" className="pdp-ad-slot"/>
