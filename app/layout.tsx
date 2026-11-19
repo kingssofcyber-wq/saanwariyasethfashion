@@ -8,6 +8,7 @@ import { ChatWidget } from "@/components/chat-widget";
 import { AdsenseLoader } from "@/components/adsense";
 import { siteConfig } from "@/lib/site-config";
 import { WebMcpTools } from "@/components/webmcp-tools";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteFooter />
         <ChatWidget />
         <SalePopup />
+        <SpeedInsights />
       </Providers>
     </body>
   </html>;
