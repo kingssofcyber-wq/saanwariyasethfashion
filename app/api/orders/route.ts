@@ -193,6 +193,13 @@ export async function POST(request: NextRequest) {
 
     const address = parseCheckoutAddress(rawBody);
     const cartItems = parseCheckoutItems(rawBody.items);
+    const couponCode = typeof rawBody.couponCode === "string" ? rawBody.couponCode.trim().toUpperCase() : "";
+    const storeSettings = await prisma.storeSettings.findUnique({
+      where: { id: "default" },
+      select: { shippingFee: true, freeShippingThreshold: true },
+    }).catch(() => null);
+    const shippingFee = storeSettings?.shippingFee ?? STANDARD_SHIPPING_FEE;
+    const freeShippingThreshold = storeSettings?.freeShippingThreshold ?? FREE_SHIPPING_THRESHOLD;
 
     // Always read price, product name and image from the database. Never trust
     // prices sent by the browser when calculating an order total.
@@ -246,8 +253,29 @@ export async function POST(request: NextRequest) {
           sum + item.price * item.quantity,
         0,
       );
-      const shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING_FEE;
-      const total = subtotal + shipping;
+      const shipping = subtotal >= freeShippingThreshold ? 0 : shippingFee;
+      let discount = 0;
+      let appliedCouponCode: string | null = null;
+      if (couponCode) {
+        const coupon = await transaction.coupon.findUnique({ where: { code: couponCode } });
+        const now = new Date();
+        if (!coupon || !coupon.active || (coupon.startsAt && coupon.startsAt > now) || (coupon.endsAt && coupon.endsAt < now)) {
+          throw new OrderRequestError("The applied coupon is no longer valid. Please remove it and try again.", 409);
+        }
+        if (coupon.usageLimit !== null && coupon.usedCount >= coupon.usageLimit) {
+          throw new OrderRequestError("This coupon has reached its usage limit.", 409);
+        }
+        if (subtotal < coupon.minOrder) throw new OrderRequestError(`Minimum order for this coupon is ₹${coupon.minOrder}.`, 400);
+        const rawDiscount = coupon.discountType === "PERCENT" ? subtotal * coupon.value / 100 : coupon.value;
+        discount = Math.round(Math.min(subtotal, coupon.maxDiscount === null ? rawDiscount : Math.min(rawDiscount, coupon.maxDiscount)) * 100) / 100;
+        const couponUpdate = await transaction.coupon.updateMany({
+          where: { id: coupon.id, active: true, ...(coupon.usageLimit === null ? {} : { usedCount: { lt: coupon.usageLimit } }) },
+          data: { usedCount: { increment: 1 } },
+        });
+        if (couponUpdate.count !== 1) throw new OrderRequestError("This coupon was just used up. Please try another code.", 409);
+        appliedCouponCode = coupon.code;
+      }
+      const total = Math.max(0, subtotal + shipping - discount);
 
       // Conditional decrement prevents two concurrent checkouts from selling
       // the same final unit. Any failure rolls back the complete transaction.
@@ -285,6 +313,8 @@ export async function POST(request: NextRequest) {
           postalCode: address.postalCode,
           subtotal,
           shipping,
+          discount,
+          couponCode: appliedCouponCode,
           total,
           paymentMethod: "COD",
           items: {
@@ -296,6 +326,8 @@ export async function POST(request: NextRequest) {
           orderNumber: true,
           subtotal: true,
           shipping: true,
+          discount: true,
+          couponCode: true,
           total: true,
           status: true,
           createdAt: true,

@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/components/providers";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { SalePopup } from "@/components/sale-popup";
-import { ChatWidget } from "@/components/chat-widget";
+import { SiteChrome } from "@/components/site-chrome";
 import { AdsenseLoader } from "@/components/adsense";
 import { siteConfig } from "@/lib/site-config";
 import { WebMcpTools } from "@/components/webmcp-tools";
@@ -30,11 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Providers>
         <AdsenseLoader />
         <WebMcpTools />
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
-        <ChatWidget />
-        <SalePopup />
+        <SiteChrome>{children}</SiteChrome>
       </Providers>
     </body>
   </html>;

@@ -136,3 +136,55 @@ See [`ADSENSE-REVIEW-READINESS.md`](./ADSENSE-REVIEW-READINESS.md) for the compl
 ## Footer credit
 
 The site footer displays “Made with ♥ by Mivaan Jangra.”
+
+## Premium Store Admin (light orange / white / green)
+
+Open `/admin` after signing in with an account whose database role is `ADMIN`.
+
+Admin sections include:
+- Overview: sales value, orders, registered customers, active products and action alerts.
+- Products: create, edit, publish, hide, search, price/MRP, category, description, stock, featured status, image and gallery URLs, own-store or affiliate source.
+- Inventory: low-stock view and inline stock updates.
+- Orders: view customer/address/items/payment/status and update fulfilment status. Cancelling an order restores its reserved product stock.
+- Customers: registered customer directory and order/review counts.
+- Categories: add, edit, sort, publish and hide categories. Active categories are shown on the shop and homepage.
+- Coupons: percentage/fixed discount, minimum order, maximum discount and usage limit. Coupon values are checked again on the server at checkout.
+- Reviews: approve, unpublish or delete customer reviews.
+- Messages: read, mark and resolve contact enquiries.
+- Banners: add/pause homepage or shop banners.
+- Store settings: customer support, announcement bar, shipping fee, free-shipping threshold and social profiles.
+
+### Apply the new admin database schema to an existing store
+
+Back up the Hostinger MySQL database first. Preserve the current `.env`, `.git`, product images and uploaded assets. Then run:
+
+```bash
+npx prisma db push
+npm run db:admin:init
+```
+
+`db:admin:init` creates/updates the default store categories and store settings only. It does not reset admin credentials, existing products, customers, orders or reviews.
+
+Do **not** run `npm run db:seed` on a live store just to update the admin panel: that seed refreshes the demo catalogue and resets the configured admin password from environment variables. Use it only for a fresh/demo database when you explicitly want the demo catalogue.
+
+### Product publishing behaviour
+
+In Admin → Products → Add product, enter the required product name, category, selling price, MRP, stock and main image URL/path. Add up to 12 gallery image URLs, one per line. Keep “Publish product immediately” checked to make it visible in the shop. The homepage queries active products newest-first, so newly published products appear in the New Arrivals section automatically. Use the Featured checkbox for the separate Customer Favourites section.
+
+Images can be entered as a public HTTPS URL or an asset path such as `/images/my-product.webp`. This admin panel does not upload binary image files to persistent cloud storage; add local assets to `public/images` through the deployment workflow or use a managed image URL.
+
+### Local build and GitHub deployment
+
+```bash
+npm install
+npm run build
+git add -A
+git commit -m "Add premium store admin dashboard"
+git push origin main
+```
+
+For Hostinger's Node.js application, configure its production `DATABASE_URL` for the Hostinger-local MySQL connection (typically `127.0.0.1:3306`), and keep `AUTH_SECRET`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` in Hostinger Environment Variables. Do not commit `.env` or secrets to GitHub. Use the same database for `db push` and the live application.
+
+### Current checkout limitations
+
+This release supports Cash on Delivery (COD) checkout. Online payment gateway, courier API, refunds and direct media upload require separate provider integrations and credentials; the admin dashboard does not claim those integrations are active.

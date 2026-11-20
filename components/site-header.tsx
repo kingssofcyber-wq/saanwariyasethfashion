@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Search, ShoppingCart, UserRound, Truck, ShieldCheck, Headset, Menu, X, ChevronDown, Heart, ArrowLeftRight } from "lucide-react";
 import { useStore } from "@/components/providers";
 
@@ -22,6 +22,13 @@ export function SiteHeader() {
   const [q, setQ] = useState("");
   const [mobile, setMobile] = useState(false);
   const [more, setMore] = useState(false);
+  const [announcement, setAnnouncement] = useState("");
+  useEffect(() => {
+    fetch("/api/storefront/settings", { cache: "no-store" })
+      .then((response) => response.ok ? response.json() : null)
+      .then((data) => { if (data?.announcement) setAnnouncement(String(data.announcement)); })
+      .catch(() => undefined);
+  }, []);
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
 
   function search(event: React.FormEvent<HTMLFormElement>) {
@@ -35,11 +42,13 @@ export function SiteHeader() {
       <div className="ss-topbar">
         <div className="ss-topbar-inner">
           <div className="ss-promises">
-            <span><Truck size={16} /> Free Shipping on Orders Above ₹999</span>
-            <i />
-            <span><ShieldCheck size={17} /> Secure Payments</span>
-            <i />
-            <span><Headset size={17} /> 24x7 Support</span>
+            {announcement ? <span className="ss-live-announcement">{announcement}</span> : <>
+              <span><Truck size={16} /> Free Shipping on Orders Above ₹999</span>
+              <i />
+              <span><ShieldCheck size={17} /> Secure Payments</span>
+              <i />
+              <span><Headset size={17} /> 24x7 Support</span>
+            </>}
           </div>
           <div className="ss-quick-links">
             <Link href="/account">My Account</Link>

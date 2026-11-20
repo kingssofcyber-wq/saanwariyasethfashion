@@ -38,13 +38,23 @@ export function MarqueeStrip() {
   return <div className="ss-marquee" aria-label="Store offers"><div className="ss-marquee-track">{[...phrases, ...phrases, ...phrases].map((phrase, index) => <span key={index}>✦ {phrase} <b>✧</b></span>)}</div></div>;
 }
 
-export function CategorySection() {
+export function CategorySection({ items = homeCategories }: { items?: { name: string; image: string; href: string }[] }) {
   return <section className="ss-category-section">
     <div className="ss-section-title"><span /> <h2>Shop by Category</h2> <span /></div>
-    <div className="ss-category-grid">{homeCategories.map((category) => <Link href={category.href} className="ss-category-card" key={category.name}>
+    <div className="ss-category-grid">{items.map((category) => <Link href={category.href} className="ss-category-card" key={category.name}>
       <div className="ss-category-image"><img src={category.image} alt={`${category.name} collection`} loading="lazy" /></div>
       <div className="ss-category-label">{category.name} <ArrowRight size={16} /></div>
     </Link>)}</div>
+  </section>;
+}
+
+export function AdminManagedBanners({ banners }: { banners: { id: string; title: string; subtitle: string; image: string; href: string }[] }) {
+  if (!banners.length) return null;
+  return <section className="sa-public-banner-grid container" aria-label="Featured store campaigns">
+    {banners.map((banner) => <Link href={banner.href || "/shop"} className="sa-public-banner" key={banner.id}>
+      <img src={banner.image} alt={banner.title} loading="lazy" />
+      <span><b>{banner.title}</b>{banner.subtitle && <small>{banner.subtitle}</small>}<i>Explore collection <ArrowRight size={15}/></i></span>
+    </Link>)}
   </section>;
 }
 
@@ -66,6 +76,7 @@ export function PromoCollections() {
 }
 
 export function FeaturedSection({ products }: { products: Product[] }) {
+  if (!products.length) return null;
   return <section className="section container featured-section ss-featured">
     <div className="section-heading"><div><span className="eyebrow">CURATED FOR YOU</span><h2>Customer <i>favourites.</i></h2><p className="section-sub">Beautiful finds to make every moment feel a little more special.</p></div><Link href="/shop" className="text-link">Shop all products <ArrowRight size={16} /></Link></div>
     <ProductGrid products={products.slice(0, 8)} />
@@ -75,7 +86,7 @@ export function FeaturedSection({ products }: { products: Product[] }) {
 export function NewArrivalsSection({ products }: { products: Product[] }) {
   return <section className="section container arrivals-section ss-arrivals">
     <div className="section-heading"><div><span className="eyebrow">FRESH FROM THE STYLE HOUSE</span><h2>New <i>Arrivals.</i></h2><p className="section-sub">The latest pieces, picked to inspire your next look.</p></div><Link href="/shop?sort=latest" className="text-link">View new arrivals <ArrowRight size={16} /></Link></div>
-    <ProductGrid products={products.slice(8, 16)} />
+    <ProductGrid products={products.slice(0, 8)} />
   </section>;
 }
 
