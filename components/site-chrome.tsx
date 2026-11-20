@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { SalePopup } from "@/components/sale-popup";
 import { ChatWidget } from "@/components/chat-widget";
+import { GlobalRouteAd } from "@/components/global-route-ad";
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -15,6 +16,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return <>
     <SiteHeader />
     <main>{children}</main>
+    <GlobalRouteAd />
     <SiteFooter />
     <ChatWidget />
     <SalePopup />
