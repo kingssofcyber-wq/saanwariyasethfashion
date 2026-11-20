@@ -21,11 +21,7 @@
     "bcryptjs": "^3.0.2",
     "jose": "^6.1.0",
     "lucide-react": "^0.468.0",
-<<<<<<< Updated upstream
-    "next": "16.4.5",
-=======
     "next": "16.4.6",
->>>>>>> Stashed changes
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "use-webmcp-tool": "^0.2.0",
