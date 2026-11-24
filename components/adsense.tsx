@@ -3,27 +3,21 @@
 import Script from "next/script";
 import { useEffect, useRef } from "react";
 
-// Publisher and ad-unit IDs are public identifiers. Never put private credentials here.
+// The publisher ID is public by design. Keep ad-slot IDs in Hostinger
+// Environment Variables; never put private credentials in this file.
 const DEFAULT_ADSENSE_CLIENT_ID = "ca-pub-7776844434912624";
-const configuredClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID?.trim() || "";
-const clientId = /^ca-pub-\d{16}$/.test(configuredClientId)
-  ? configuredClientId
-  : DEFAULT_ADSENSE_CLIENT_ID;
+const clientId =
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID?.trim() || DEFAULT_ADSENSE_CLIENT_ID;
 const isValidClientId = /^ca-pub-\d{16}$/.test(clientId);
 const ADSENSE_READY_EVENT = "saanwariya-adsense-ready";
 
-// The supplied responsive ad-unit ID is used as the default at every existing
-// placement across the store.
-const DEFAULT_AD_SLOT_ID = "8943400841";
-// The publisher supplied one responsive ad unit to use at every placement.
-// Keep the slot ID centralised so existing and future placements stay consistent.
 const slots = {
-  homeTop: DEFAULT_AD_SLOT_ID,
-  homeMid: DEFAULT_AD_SLOT_ID,
-  shopTop: DEFAULT_AD_SLOT_ID,
-  shopInline: DEFAULT_AD_SLOT_ID,
-  productBottom: DEFAULT_AD_SLOT_ID,
-  content: DEFAULT_AD_SLOT_ID,
+  homeTop: process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_TOP?.trim() || "",
+  homeMid: process.env.NEXT_PUBLIC_ADSENSE_SLOT_HOME_MID?.trim() || "",
+  shopTop: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SHOP_TOP?.trim() || "",
+  shopInline: process.env.NEXT_PUBLIC_ADSENSE_SLOT_SHOP_INLINE?.trim() || "",
+  productBottom: process.env.NEXT_PUBLIC_ADSENSE_SLOT_PRODUCT_BOTTOM?.trim() || "",
+  content: process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT?.trim() || "",
 };
 
 export type AdSlotKey = keyof typeof slots;

@@ -830,3 +830,93 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,te
 @media (prefers-reduced-motion: reduce) {
   .sa-diagnostics-panel *, .sa-diagnostics-panel *::before, .sa-diagnostics-panel *::after { transition-duration: .01ms !important; }
 }
+
+
+/* Saanwariya admin refresh: clean sky-blue + white workspace.
+   Scoped to admin so the public fashion storefront keeps its existing brand palette. */
+.sa-admin-shell{
+  --sa-orange:#168bd0;
+  --sa-orange-soft:#e8f5ff;
+  --sa-orange-pale:#f4faff;
+  --sa-green:#167fbd;
+  --sa-green-soft:#eaf6ff;
+  --sa-ink:#193b54;
+  --sa-muted:#7890a3;
+  --sa-line:#dceaf4;
+  --sa-bg:#f4f9fd;
+  background:var(--sa-bg);
+}
+.sa-sidebar{background:#fff;border-right-color:#dceaf4;box-shadow:8px 0 28px rgba(28,91,130,.025)}
+.sa-sidebar-brand{border-bottom-color:#e7f0f7}
+.sa-brand-mark{background:linear-gradient(145deg,#67c5f3,#168bd0);box-shadow:0 7px 18px rgba(22,139,208,.2)}
+.sa-sidebar-brand b{color:#173b56}
+.sa-sidebar-brand small{color:#829eb2}
+.sa-store-switch{border-color:#e2eef7;background:#f7fbff}
+.sa-store-avatar{background:#e4f4ff;color:#117bb9}
+.sa-store-switch b{color:#244b66}
+.sa-store-switch small,.sa-store-switch>svg{color:#8aa5b9}
+.sa-nav-heading{color:#90a9bb}
+.sa-nav-item{color:#607f95}
+.sa-nav-item>svg{color:#8ba8bc}
+.sa-nav-item:hover{background:#f2f9fe;color:#135e8b}
+.sa-nav-item.active{background:#e5f4ff;color:#0878b7;box-shadow:inset 3px 0 0 #229cdd}
+.sa-nav-item.active>svg{color:#168bd0}
+.sa-nav-item i{background:#e4f4ff;color:#137db9}
+.sa-sidebar-help{background:#edf8ff;color:#147eb8}
+.sa-sidebar-help small{color:#7297b0}
+.sa-view-store{color:#5b7d94}
+.sa-topbar{background:rgba(255,255,255,.96);border-bottom-color:#dceaf4}
+.sa-topbar-left small{color:#8da9bc}
+.sa-topbar-left b{color:#173b56}
+.sa-live-pill{background:#eaf7ff;color:#167fbd}
+.sa-live-pill i{background:#269cd8;box-shadow:0 0 0 3px rgba(38,156,216,.14)}
+.sa-refresh,.sa-menu-button{border-color:#dceaf4;color:#6689a1}
+.sa-admin-avatar{background:linear-gradient(145deg,#bde8ff,#55b9ed);color:#124f75}
+.sa-page-heading h1{color:#183e59}
+.sa-kicker,.sa-page-heading h1 em{color:#168bd0}
+.sa-page-heading p{color:#7992a5}
+.sa-date-chip{border-color:#dceaf4;color:#5f8098}
+.sa-primary-btn{background:linear-gradient(105deg,#39afe9,#087fca);box-shadow:0 7px 16px rgba(22,139,208,.18)}
+.sa-primary-btn:hover{box-shadow:0 10px 20px rgba(22,139,208,.25)}
+.sa-outline-btn{border-color:#d7e8f4;color:#187eB9}
+.sa-text-btn{color:#1684c5}
+.sa-alert.success{background:#eaf7ff;color:#147bb4}
+.sa-alert.error{background:#fff0ef;color:#bd5c50}
+.sa-loading{color:#7894a9}
+.sa-spinner{border-color:#dcecf7;border-top-color:#168bd0}
+.sa-stat-card,.sa-panel{border-color:#e0edf6;box-shadow:0 7px 22px rgba(32,91,128,.045)}
+.sa-stat-card>strong{color:#1e4864}
+.sa-stat-label,.sa-stat-card>small{color:#8199aa}
+.sa-stat-icon{background:#e9f6ff!important;color:#168bd0!important}
+.sa-panel-heading h2{color:#1e4762}
+.sa-panel-heading h2 small{background:#eaf6ff;color:#347fa9}
+.sa-panel-heading p{color:#879eae}
+.sa-table th{border-bottom-color:#e7f0f7;color:#89a0b1}
+.sa-table td{border-bottom-color:#edf3f8;color:#607c90}
+.sa-search-box,.sa-toolbar-actions>select{border-color:#dceaf4;color:#66879d;background:#fff}
+.sa-search-box input{color:#254d67}
+.sa-form-grid label,.sa-compact-form label,.sa-settings-form label{color:#54758c}
+.sa-form-grid input,.sa-form-grid select,.sa-form-grid textarea,.sa-compact-form input,.sa-compact-form select,.sa-settings-form input,.sa-settings-form textarea,.sa-stock-edit input{border-color:#dceaf4;background:#fbfdff;color:#294f68}
+.sa-form-grid input:focus,.sa-form-grid select:focus,.sa-form-grid textarea:focus,.sa-compact-form input:focus,.sa-compact-form select:focus,.sa-settings-form input:focus,.sa-settings-form textarea:focus,.sa-search-box:focus-within{outline:none;border-color:#58b7e8;box-shadow:0 0 0 3px rgba(56,171,226,.13)}
+.sa-inventory-card,.sa-orders-list .sa-order-card{border-color:#e1edf5}
+.sa-inventory-info>b,.sa-order-id b,.sa-order-summary>strong,.sa-customer-cell b,.sa-category-list b,.sa-coupon-list b,.sa-banner-list b{color:#254c66}
+.sa-stock-edit button,.sa-small-btn.green{background:#e7f5ff;color:#167db6;border-color:#d2eafa}
+.sa-order-icon,.sa-coupon-tag{background:#e8f5ff;color:#168bd0}
+.sa-order-expanded{background:#f6fbff;border-top-color:#e3eef6}
+.sa-order-customer>b,.sa-order-line-items b{color:#28526d}
+.sa-category-list>article,.sa-coupon-list>article,.sa-banner-list>article,.sa-review-list>article,.sa-message-list>article{border-bottom-color:#eaf2f8}
+.sa-count-badge{background:#e8f5ff;color:#157eb9}
+.sa-empty>span{background:#eaf6ff;color:#168bd0}
+.sa-empty>b{color:#315b75}
+.sa-sidebar-backdrop{background:#123b5677}
+.sa-admin-footer{color:#8da2b2}
+.sa-admin-footer b{color:#168bd0}
+.sa-diagnostics-panel{border-color:#dceaf4!important;background:#f9fcff!important}
+.sa-homepage-sync-strip{display:flex;align-items:center;gap:13px;margin:0 0 16px;padding:15px 17px;border:1px solid #d7eaf7;border-radius:13px;background:linear-gradient(110deg,#eff9ff,#fff);box-shadow:0 5px 18px rgba(32,91,128,.035)}
+.sa-home-sync-icon{width:38px;height:38px;display:grid;place-items:center;flex:none;border-radius:11px;background:#dff2ff;color:#168bd0}
+.sa-homepage-sync-strip>div{min-width:0;flex:1}
+.sa-homepage-sync-strip b{display:block;color:#1b4d6c;font-size:11px}
+.sa-homepage-sync-strip p{margin:5px 0 0;color:#6e8da3;font-size:9px;line-height:1.65}
+.sa-homepage-sync-strip>a{display:inline-flex;align-items:center;gap:5px;flex:none;color:#117fbd;font-size:9px;font-weight:800;text-decoration:none}
+.sa-homepage-sync-strip>a:hover{text-decoration:underline}
+@media(max-width:760px){.sa-homepage-sync-strip{align-items:flex-start;flex-wrap:wrap}.sa-homepage-sync-strip>a{margin-left:51px}}
