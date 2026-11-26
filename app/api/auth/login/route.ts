@@ -1,53 +1,108 @@
-  }
+import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
+import { createSession } from "@/lib/auth";
 
-  // Use the same response for an unknown account and a wrong password.
-  if (!user) {
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+type LoginBody = {
+  email?: unknown;
+  password?: unknown;
+};
+
+function getSafeErrorDetails(error: unknown) {
+  const err = error instanceof Error ? error : new Error("Unknown authentication error");
+  const errorObject =
+    typeof error === "object" && error !== null
+      ? (error as Record<string, unknown>)
+      : undefined;
+
+  const rawCode = errorObject?.code;
+  const code = typeof rawCode === "string" ? rawCode : undefined;
+
+  // Do not log request bodies, passwords, cookies, tokens, or DATABASE_URL.
+  const message = err.message
+    .replace(/mysql:\/\/[^\s"'`]+/gi, "[DATABASE_URL REDACTED]")
+    .replace(/(password|secret|token)\s*[:=]\s*[^,\s]+/gi, "$1=[REDACTED]")
+    .slice(0, 400);
+
+  return {
+    name: err.name,
+    code,
+    message,
+  };
+}
+
+export async function POST(req: NextRequest) {
+  let body: LoginBody;
+
+  try {
+    body = (await req.json()) as LoginBody;
+  } catch {
     return NextResponse.json(
-      { error: "Email or password is incorrect." },
-      { status: 401, headers: { "Cache-Control": "no-store" } }
+      { error: "Please submit a valid login request." },
+      { status: 400 }
     );
   }
 
-  if (typeof user.passwordHash !== "string" || user.passwordHash.length === 0) {
-    console.error("[auth/login] account_password_hash_missing", {
-      userId: user.id,
+  const email =
+    typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+  const password = typeof body.password === "string" ? body.password : "";
+
+  if (!email || !password) {
+    return NextResponse.json(
+      { error: "Enter both your email and password." },
+      { status: 400 }
+    );
+  }
+
+  let stage = "user_lookup";
+
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
     });
-    return unavailableResponse();
-  }
 
-  // Step 2: Verify the password hash.
-  let passwordMatches = false;
-  try {
-    passwordMatches = await bcrypt.compare(password, user.passwordHash);
-  } catch (error) {
-    console.error("[auth/login] password_verification_failed", safeErrorDetails(error));
-    return unavailableResponse();
-  }
+    if (!user) {
+      return NextResponse.json(
+        { error: "Email or password is incorrect." },
+        { status: 401 }
+      );
+    }
 
-  if (!passwordMatches) {
-    return NextResponse.json(
-      { error: "Email or password is incorrect." },
-      { status: 401, headers: { "Cache-Control": "no-store" } }
-    );
-  }
+    stage = "password_verification";
+    const passwordMatches = await bcrypt.compare(password, user.passwordHash);
 
-  // Step 3: Create the authenticated session/cookie.
-  try {
+    if (!passwordMatches) {
+      return NextResponse.json(
+        { error: "Email or password is incorrect." },
+        { status: 401 }
+      );
+    }
+
+    stage = "session_creation";
     await createSession(user);
-  } catch (error) {
-    console.error("[auth/login] session_creation_failed", safeErrorDetails(error));
-    return unavailableResponse();
-  }
 
-  return NextResponse.json(
-    {
+    return NextResponse.json({
       user: {
         id: user.id,
         name: user.name,
         email: user.email,
         role: user.role,
       },
-    },
-    { status: 200, headers: { "Cache-Control": "no-store" } }
-  );
+    });
+  } catch (error: unknown) {
+    console.error("[auth/login] Failed", {
+      stage,
+      ...getSafeErrorDetails(error),
+    });
+
+    return NextResponse.json(
+      {
+        error: "Login service is temporarily unavailable. Please try again later.",
+      },
+      { status: 503 }
+    );
+  }
 }
