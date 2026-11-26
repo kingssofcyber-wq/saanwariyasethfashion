@@ -1,37 +1,53 @@
-import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import { prisma } from "@/lib/prisma";
-import { createSession } from "@/lib/auth";
-
-export const runtime = "nodejs";
-
-export async function POST(req: NextRequest) {
-  let body: { email?: unknown; password?: unknown };
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Please submit a valid login request." }, { status: 400 });
   }
 
-  const email = typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
-  const password = typeof body.password === "string" ? body.password : "";
-  if (!email || !password) {
-    return NextResponse.json({ error: "Enter both your email and password." }, { status: 400 });
+  // Use the same response for an unknown account and a wrong password.
+  if (!user) {
+    return NextResponse.json(
+      { error: "Email or password is incorrect." },
+      { status: 401, headers: { "Cache-Control": "no-store" } }
+    );
   }
 
-  try {
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
-      return NextResponse.json({ error: "Email or password is incorrect." }, { status: 401 });
-    }
-
-    await createSession(user);
-    return NextResponse.json({
-      user: { id: user.id, name: user.name, email: user.email, role: user.role },
+  if (typeof user.passwordHash !== "string" || user.passwordHash.length === 0) {
+    console.error("[auth/login] account_password_hash_missing", {
+      userId: user.id,
     });
-  } catch {
-    // Deliberately never log the email/password payload, cookies, DB URL or raw exception.
-    console.error("[auth/login] Authentication service error.");
-    return NextResponse.json({ error: "Login service is temporarily unavailable. Please try again later." }, { status: 503 });
+    return unavailableResponse();
   }
+
+  // Step 2: Verify the password hash.
+  let passwordMatches = false;
+  try {
+    passwordMatches = await bcrypt.compare(password, user.passwordHash);
+  } catch (error) {
+    console.error("[auth/login] password_verification_failed", safeErrorDetails(error));
+    return unavailableResponse();
+  }
+
+  if (!passwordMatches) {
+    return NextResponse.json(
+      { error: "Email or password is incorrect." },
+      { status: 401, headers: { "Cache-Control": "no-store" } }
+    );
+  }
+
+  // Step 3: Create the authenticated session/cookie.
+  try {
+    await createSession(user);
+  } catch (error) {
+    console.error("[auth/login] session_creation_failed", safeErrorDetails(error));
+    return unavailableResponse();
+  }
+
+  return NextResponse.json(
+    {
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    },
+    { status: 200, headers: { "Cache-Control": "no-store" } }
+  );
 }
